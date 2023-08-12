@@ -1,14 +1,7 @@
-import NavBar from "./nav-bar/nav-bar";
+import Main from "./main/page";
 
-export default function Home () {
+export default function Page () {
   return (
-    <div className="h-full grid grid-rows-[auto_1fr]">
-      <NavBar></NavBar>
-      <main>
-        <div className="h-full flex items-center justify-center">
-          <p>Hello \/\/</p>
-        </div>
-      </main>
-    </div>
+    <Main />
   );
 }

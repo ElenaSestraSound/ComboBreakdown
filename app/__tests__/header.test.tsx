@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import MainHeader from '../header/header';
 
-import NavBar from '../nav-bar/nav-bar';
-
-describe('NavBar', () => {
+describe('Main Header', () => {
   it('renders the main heading', () => {
-    render(<NavBar />);
+    render(<MainHeader />);
     const heading = screen.getByRole('heading', {
       name: /combo breakdown/i
     });
