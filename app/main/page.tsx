@@ -1,6 +1,6 @@
 import CharacterList from "./character-list";
 
-export default async function Main () {
+export default function Main () {
 
   return (
     <div className="h-full flex items-center justify-center">

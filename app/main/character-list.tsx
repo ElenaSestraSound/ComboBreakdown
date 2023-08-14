@@ -1,8 +1,9 @@
+import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 
-export default async function CharacterList () {
+export default function CharacterList () {
 
-  let characters = await getCharacters();
+  const characters = use(getCharacters());
 
   return (<>
     {characters && (
