@@ -31,15 +31,17 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
   }, [selection]);
 
   return (
-    <div>
+    <div className='relative'>
       <div
-        className='p-2 bg-purple-900'
+        className='p-2 bg-purple-900 cursor-pointer hover:bg-purple-800'
         onClick={() => setMenuShown(prev => !prev)}>
         <span>{selection ? selection.name : title}</span>
       </div>
       {menuShown &&
-        <div>
-          {list.map((character, index) => <span key={Date.now() + index}
+        <div className='absolute top-0 w-full h-72 z-10'>
+          {list.map((character, index) => <span
+            className='block p-2 bg-purple-700 cursor-pointer hover:bg-purple-400'
+            key={Date.now() + index}
             id={index.toString()}
             onClick={onClickHandler}
           >{character.name}</span>)}

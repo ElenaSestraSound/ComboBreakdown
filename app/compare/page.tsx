@@ -32,8 +32,8 @@ export default function Compare () {
   };
 
   return (
-    <div>
-      <div>
+    <div className='max-w-4xl mx-auto flex basis-1/3'>
+      <div className='w-full'>
         <DropdownSelector
           list={characterList}
           title={'SELECT A CHARACTER'}
@@ -47,10 +47,10 @@ export default function Compare () {
             title={'SELECT MOVE'}
             onChangeSelection={onSelectFirstCharacterMove} />}
       </div>
-      <div>
+      <div className='w-full text-center self-center'>
         VS
       </div>
-      <div>
+      <div className='w-full'>
         <DropdownSelector
           list={characterList}
           title={'SELECT A CHARACTER'}
@@ -64,7 +64,6 @@ export default function Compare () {
             title={'SELECT MOVE'}
             onChangeSelection={onSelectSecondCharacterMove} />}
       </div>
-
     </div>
   );
 }
