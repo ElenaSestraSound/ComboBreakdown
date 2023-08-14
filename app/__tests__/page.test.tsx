@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import Page from '../page';
 
 describe('Root Page', () => {
-  it('renders hello', () => {
+  it('renders heading', () => {
     render(<Page />);
-    const hello = screen.getByText(/hello/i);
-    expect(hello).toBeInTheDocument();
+    const heading = screen.getByText(/Characters/i);
+    expect(heading).toBeInTheDocument();
   });
 });
