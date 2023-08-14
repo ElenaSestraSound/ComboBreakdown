@@ -1,15 +1,16 @@
-import { prisma } from '@/lib/prisma';
+import { getCharacters } from '@/utils/get-characters';
 
 export default async function CharacterList () {
 
-  let characters = await prisma.character.findMany();
+  let characters = await getCharacters();
 
   return (<>
-    {characters && (<ul>
-      {characters.map((character) => (
-        <li key={character.id}> {character.name}</li>
-      ))}
-    </ul>
+    {characters && (
+      <ul>
+        {characters.map((character) => (
+          <li key={character.id}> {character.name}</li>
+        ))}
+      </ul>
     )}
   </>
   );
