@@ -3,6 +3,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { characters } from './mockCharacters';
 import { Character, Move } from './types';
 import DropdownSelector from './DropdownSelector/DropdownSelector';
+import DropdownCharacterSelector from './DropdownSelector/DropdownCharacterSelector';
 
 export default function Compare () {
   const characterList = listToPairs(characters);
@@ -43,10 +44,10 @@ export default function Compare () {
   }, [firstCharacterMove, secondCharacterMove]);
 
   return (
-    <div className='max-w-4xl mx-auto'>
+    <div className='max-w-4xl mx-auto py-20'>
       <div className='flex basis-1/3'>
         <div className='w-full'>
-          <DropdownSelector
+          <DropdownCharacterSelector
             list={characterList}
             title={'SELECT A CHARACTER'}
             onChangeSelection={onSelectFirstCharacter} />
@@ -59,14 +60,15 @@ export default function Compare () {
               title={'SELECT MOVE'}
               onChangeSelection={onSelectFirstCharacterMove} />}
         </div>
-        <div className='w-full text-center self-center'>
+        <div className='w-full text-center self-center text-4xl font-bold'>
           VS
         </div>
         <div className='w-full'>
-          <DropdownSelector
+          <DropdownCharacterSelector
             list={characterList}
             title={'SELECT A CHARACTER'}
-            onChangeSelection={onSelectSecondCharacter} />
+            onChangeSelection={onSelectSecondCharacter}
+            alignRight={true} />
           {secondCharacter &&
             <DropdownSelector
               // by adding this key the component knows that the caracter selection
