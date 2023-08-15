@@ -10,7 +10,7 @@ export interface IBarMeterProps {
 }
 
 export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
-  const activeFirst = parseInt(active.split('-')[0]);
+  // const activeFirst = parseInt(active.split('-')[0]);
   const activeLast = parseInt(active.split('-')[1]);
 
   return (
@@ -24,7 +24,6 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
         <HorizontalBarSeries barWidth={0.8} data={[{ y: 1, x: recovery - activeLast }]} color={'#0670c8'} />
         <HorizontalBarSeries barWidth={0.8} data={[{ y: 1, x: 40 }]} color={'#0e0e0c'} />
       </XYPlot>
-
     </div >
   );
 }
