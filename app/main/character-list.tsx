@@ -1,15 +1,11 @@
-import { use } from 'react';
-import { getCharacters } from '@/utils/get-characters';
+import { ICharacterList } from '@/utils/types';
 
-export default function CharacterList () {
-
-  const characters = use(getCharacters());
-
+export default function CharacterList ({ characters }: ICharacterList) {
   return (<>
     {characters && (
       <ul>
         {characters.map((character) => (
-          <li key={character.id}> {character.name}</li>
+          <li key={character.name}> {character.name}</li>
         ))}
       </ul>
     )}
