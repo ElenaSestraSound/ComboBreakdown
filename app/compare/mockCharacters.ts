@@ -12,51 +12,43 @@ export const characters: Character[] = [
       {
         name: "L Sand Blast",
         type: "special",
-        combination: {
-          classic: "236+LP",
-          modern: "5+SP",
-          manual: "236+L"
-        },
+        classic: "236+LP",
+        modern: "5+SP",
+        manual: "236+L",
         driveGauge: 2,
         video: "https://www.streetfighter.com/6/assets/images/character/luke/skill/movie/501.mp4",
         definition: "Fire a shockwave of pressure from your fist. Useful for checking an opponent from a distance, and as a stopgap in combos.",
-        frameData: {
-          startup: 14,
-          active: "14-18",
-          missRecovery: 47,
-          hitStunRecovery: -3,
-          blockStunRecovery: -8,
-          cancelable: "SA3",
-          damage: 600,
-          driveIncreaseHit: 1000,
-          driveDecreaseBlock: -2500,
-          driveDecreasePunish: -2000,
-          superArtGaugeIncrease: 600,
-          properties: "High-Projectile"
-        }
+        startup: 14,
+        active: "14-18",
+        missRecovery: 47,
+        hitStunRecovery: -3,
+        blockStunRecovery: -8,
+        cancelable: "SA3",
+        damage: 600,
+        driveIncreaseHit: 1000,
+        driveDecreaseBlock: -2500,
+        driveDecreasePunish: -2000,
+        superArtGaugeIncrease: 600,
+        properties: "High-Projectile"
       },
       {
         name: "Crouching Medium Kick",
         type: "normal",
-        combination: {
-          classic: "2+MK",
-          modern: "2+M"
-        },
-        frameData: {
-          startup: 8,
-          active: "8-10",
-          missRecovery: 19,
-          hitStunRecovery: -2,
-          blockStunRecovery: -6,
-          cancelable: "C",
-          damage: 500,
-          scaling: 20,
-          driveIncreaseHit: 1000,
-          driveDecreaseBlock: -2000,
-          driveDecreasePunish: -4000,
-          superArtGaugeIncrease: 600,
-          properties: "Low"
-        }
+        classic: "2+MK",
+        modern: "2+M",
+        startup: 8,
+        active: "8-10",
+        missRecovery: 19,
+        hitStunRecovery: -2,
+        blockStunRecovery: -6,
+        cancelable: "C",
+        damage: 500,
+        scaling: 20,
+        driveIncreaseHit: 1000,
+        driveDecreaseBlock: -2000,
+        driveDecreasePunish: -4000,
+        superArtGaugeIncrease: 600,
+        properties: "Low"
       }
     ]
   },
@@ -71,51 +63,44 @@ export const characters: Character[] = [
       {
         name: "Shoryu",
         type: "special",
-        combination: {
-          classic: "236+LP",
-          modern: "5+SP",
-          manual: "236+L"
-        },
+        classic: "236+LP",
+        modern: "5+SP",
+        manual: "236+L",
         driveGauge: 2,
         video: "https://www.streetfighter.com/6/assets/images/character/luke/skill/movie/501.mp4",
         definition: "Fire a shockwave of pressure from your fist. Useful for checking an opponent from a distance, and as a stopgap in combos.",
-        frameData: {
-          startup: 14,
-          active: "14-18",
-          missRecovery: 47,
-          hitStunRecovery: -3,
-          blockStunRecovery: -8,
-          cancelable: "SA3",
-          damage: 600,
-          driveIncreaseHit: 1000,
-          driveDecreaseBlock: -2500,
-          driveDecreasePunish: -2000,
-          superArtGaugeIncrease: 600,
-          properties: "High-Projectile"
-        }
+        startup: 14,
+        active: "14-18",
+        missRecovery: 47,
+        hitStunRecovery: -3,
+        blockStunRecovery: -8,
+        cancelable: "SA3",
+        damage: 600,
+        driveIncreaseHit: 1000,
+        driveDecreaseBlock: -2500,
+        driveDecreasePunish: -2000,
+        superArtGaugeIncrease: 600,
+        properties: "High-Projectile"
       },
       {
         name: "Crouching Light Kick",
         type: "normal",
-        combination: {
-          classic: "2+MK",
-          modern: "2+M"
-        },
-        frameData: {
-          startup: 8,
-          active: "8-10",
-          missRecovery: 19,
-          hitStunRecovery: -2,
-          blockStunRecovery: -6,
-          cancelable: "C",
-          damage: 500,
-          scaling: 20,
-          driveIncreaseHit: 1000,
-          driveDecreaseBlock: -2000,
-          driveDecreasePunish: -4000,
-          superArtGaugeIncrease: 600,
-          properties: "Low"
-        }
+        classic: "2+MK",
+        modern: "2+M",
+        startup: 8,
+        active: "8-10",
+        missRecovery: 19,
+        hitStunRecovery: -2,
+        blockStunRecovery: -6,
+        cancelable: "C",
+        damage: 500,
+        scaling: 20,
+        driveIncreaseHit: 1000,
+        driveDecreaseBlock: -2000,
+        driveDecreasePunish: -4000,
+        superArtGaugeIncrease: 600,
+        properties: "Low"
+
       }
     ]
   }
