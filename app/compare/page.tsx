@@ -13,6 +13,8 @@ export default function Compare () {
   const [secondCharacter, setSecondCharacter] = useState<Character | null>(null);
   const [secondCharacterMove, setSecondCharacterMove] = useState<Move | null>(null);
 
+  const [winner, setWinner] = useState('DRAW');
+
   const onSelectFirstCharacterMove = (index: number) => {
     setFirstCharacterMove(firstCharacter!.moves[index]);
   };
@@ -31,39 +33,67 @@ export default function Compare () {
     setSecondCharacterMove(null);
   };
 
+  useEffect(() => {
+    if (firstCharacterMove && secondCharacterMove) {
+      const difference = firstCharacterMove.frameData.startup - secondCharacterMove.frameData.startup;
+      if (difference < 0) return setWinner(firstCharacter!.name);
+      if (difference > 0) return setWinner(secondCharacter!.name);
+      if (difference === 0) return setWinner('DRAW');
+    }
+  }, [firstCharacterMove, secondCharacterMove]);
+
   return (
-    <div className='max-w-4xl mx-auto flex basis-1/3'>
-      <div className='w-full'>
-        <DropdownSelector
-          list={characterList}
-          title={'SELECT A CHARACTER'}
-          onChangeSelection={onSelectFirstCharacter} />
-        {firstCharacter &&
+    <div className='max-w-4xl mx-auto'>
+      <div className='flex basis-1/3'>
+        <div className='w-full'>
           <DropdownSelector
-            // by adding this key the component knows that the caracter selection
-            // has changed and it resets to its default value
-            key={firstCharacter.name}
-            list={listToPairs(firstCharacter.moves)}
-            title={'SELECT MOVE'}
-            onChangeSelection={onSelectFirstCharacterMove} />}
-      </div>
-      <div className='w-full text-center self-center'>
-        VS
-      </div>
-      <div className='w-full'>
-        <DropdownSelector
-          list={characterList}
-          title={'SELECT A CHARACTER'}
-          onChangeSelection={onSelectSecondCharacter} />
-        {secondCharacter &&
+            list={characterList}
+            title={'SELECT A CHARACTER'}
+            onChangeSelection={onSelectFirstCharacter} />
+          {firstCharacter &&
+            <DropdownSelector
+              // by adding this key the component knows that the caracter selection
+              // has changed and it resets to its default value
+              key={firstCharacter.name}
+              list={listToPairs(firstCharacter.moves)}
+              title={'SELECT MOVE'}
+              onChangeSelection={onSelectFirstCharacterMove} />}
+        </div>
+        <div className='w-full text-center self-center'>
+          VS
+        </div>
+        <div className='w-full'>
           <DropdownSelector
-            // by adding this key the component knows that the caracter selection
-            // has changed and it resets to its default value
-            key={secondCharacter.name}
-            list={listToPairs(secondCharacter.moves)}
-            title={'SELECT MOVE'}
-            onChangeSelection={onSelectSecondCharacterMove} />}
+            list={characterList}
+            title={'SELECT A CHARACTER'}
+            onChangeSelection={onSelectSecondCharacter} />
+          {secondCharacter &&
+            <DropdownSelector
+              // by adding this key the component knows that the caracter selection
+              // has changed and it resets to its default value
+              key={secondCharacter.name}
+              list={listToPairs(secondCharacter.moves)}
+              title={'SELECT MOVE'}
+              onChangeSelection={onSelectSecondCharacterMove} />}
+        </div>
       </div>
+      {firstCharacter && firstCharacterMove &&
+        <div className='text-center'>
+          P1: {firstCharacterMove.frameData.startup} frames on Startup
+        </div>
+      }
+      {secondCharacter && secondCharacterMove &&
+        <div className='text-center'>
+          P2: {secondCharacterMove.frameData.startup} frames on Startup
+        </div>
+      }
+      {firstCharacterMove && secondCharacterMove &&
+        winner !== 'DRAW' &&
+        <div className='text-center'>{winner} Wins</div>
+      }
+      {firstCharacterMove && secondCharacterMove &&
+        winner === 'DRAW' &&
+        <div className='text-center'>DRAW</div>}
     </div>
   );
 }
