@@ -1,4 +1,4 @@
-import { Character } from "./types";
+import { Character } from "@/utils/types";
 
 export const characters: Character[] = [
   {
@@ -100,7 +100,6 @@ export const characters: Character[] = [
         driveDecreasePunish: -4000,
         superArtGaugeIncrease: 600,
         properties: "Low"
-
       }
     ]
   }

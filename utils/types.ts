@@ -5,7 +5,7 @@ export type Character = {
   notlike: string,
   height: string,
   weight: string,
-  moves?: Move[];
+  moves: Move[];
 };
 export type Move = {
   name: string,

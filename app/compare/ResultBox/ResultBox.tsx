@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BarMeter } from './BarMeter';
-import { Move } from '../types';
+import { Move } from '../_types';
 import { useEffect, useState } from 'react';
 
 
