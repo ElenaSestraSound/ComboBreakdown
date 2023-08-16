@@ -1,9 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Oswald } from 'next/font/google';
 import Header from "./header/header";
 
-const inter = Inter({ subsets: ['latin'] });
+const oswald = Oswald({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Combo Breakdown',
@@ -17,7 +17,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} data-testid="cbd">
+      <body className={oswald.className} data-testid="cbd">
         <div className="h-full grid grid-rows-[auto_1fr]">
           <Header />
           <main>
