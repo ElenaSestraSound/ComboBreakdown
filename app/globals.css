@@ -7,8 +7,8 @@
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
   --background-rgb: 20, 10, 30;
-  --main-rgb: 120, 25, 150;
-  --highlight-rgb: 200, 100, 240;
+  --main-rgb: 150, 55, 180;
+  --highlight-rgb: 180, 80, 220;
 }
 
 html,
@@ -26,5 +26,38 @@ body {
 }
 
 header {
-  background-color: rgba(var(--main-rgb), 0.15)
+  background-color: rgba(var(--main-rgb), 0.15);
+}
+
+header h1 span {
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav {
+  color: #dfdfdf;
+  margin-bottom: -0.17rem;
+}
+
+header nav span {
+  display: block;
+  margin: 0 0.25rem;
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav a {
+  transition: all 50ms ease-in;
+}
+
+header nav a:hover {
+  color: rgb(var(--highlight-rgb));
+  transition: all 50ms ease-in;
+}
+
+header nav .active,
+header nav .active:hover {
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav .active:hover {
+  cursor: default;
 }
