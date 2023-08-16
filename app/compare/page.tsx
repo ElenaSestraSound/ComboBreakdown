@@ -14,7 +14,7 @@ export default function Compare () {
   const [secondCharacterMove, setSecondCharacterMove] = useState<Move | null>(null);
 
   const onSelectFirstCharacterMove = (index: number) => {
-    setFirstCharacterMove(firstCharacter!.moves[index]);
+    setFirstCharacterMove(firstCharacter!.moves![index]);
   };
 
   const onSelectFirstCharacter = (index: number) => {
@@ -23,7 +23,7 @@ export default function Compare () {
   };
 
   const onSelectSecondCharacterMove = (index: number) => {
-    setSecondCharacterMove(firstCharacter!.moves[index]);
+    setSecondCharacterMove(firstCharacter!.moves![index]);
   };
 
   const onSelectSecondCharacter = (index: number) => {
@@ -46,7 +46,7 @@ export default function Compare () {
               // by adding this key the component knows that the caracter selection
               // has changed and it resets to its default value
               key={firstCharacter.name}
-              list={listToPairs(firstCharacter.moves)}
+              list={listToPairs(firstCharacter.moves!)}
               title={'SELECT MOVE'}
               onChangeSelection={onSelectFirstCharacterMove} />}
         </div>
@@ -66,7 +66,7 @@ export default function Compare () {
               // by adding this key the component knows that the caracter selection
               // has changed and it resets to its default value
               key={secondCharacter.name}
-              list={listToPairs(secondCharacter.moves)}
+              list={listToPairs(secondCharacter.moves!)}
               title={'SELECT MOVE'}
               onChangeSelection={onSelectSecondCharacterMove} />}
         </div>
