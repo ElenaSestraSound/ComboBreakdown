@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BarMeter } from './BarMeter';
-import { Move } from '../_types';
 import { useEffect, useState } from 'react';
+import { Move } from '@/utils/types';
 
 
 export interface IResultBoxProps {
