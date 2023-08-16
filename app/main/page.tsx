@@ -1,17 +1,22 @@
-import { use } from 'react';
-import { getCharacters } from '@/utils/get-characters';
+// import { use } from 'react';
+// import { getCharacters } from '@/utils/get-characters';
 import CharacterList from "./character-list";
+import { characters } from './mockCharacters';
 
 export default function Main () {
-  const characters = use(getCharacters());
+  // const characters = use(getCharacters()); // Get data from db
+
   return (
-    <div className="h-full flex items-center justify-center">
-      <div className="flex flex-col gap-y-3">
-        <h2>Characters</h2>
-        {characters && (
-          <CharacterList characters={characters} />
-        )}
+    <>
+      <div className="h-full grid grid-rows-[auto_1fr]" >
+        <h2 className="flex justify-center text-5xl m-9">Characters</h2>
+        <div className="">
+          {characters && (
+            <CharacterList characters={characters} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
+
