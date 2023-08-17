@@ -1,11 +1,9 @@
-// import { use } from 'react';
-// import { getCharacters } from '@/utils/get-characters';
+import { use } from 'react';
+import { getCharacters } from '@/utils/get-characters';
 import CharacterList from "./character-list";
-import { characters } from './mockCharacters';
 
 export default function Main () {
-  // const characters = use(getCharacters()); // Get data from db
-
+  const characters = use(getCharacters()); // Get data from db
   return (
     <>
       <div className="h-full grid grid-rows-[auto_1fr]" >
