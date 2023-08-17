@@ -21,13 +21,14 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
       if (difference > 0) return setWinner(secondCharacterName! + ' wins!');
       if (difference === 0) return setWinner('DRAW');
     }
-  }, [firstCharacterMove, secondCharacterMove]);
+  }, [firstCharacterMove, firstCharacterName, secondCharacterMove, secondCharacterName]);
 
   return (
     <>
       {firstCharacterMove &&
         <div className='mb-4'>
           <BarMeter
+            name={firstCharacterName}
             startup={firstCharacterMove.startup}
             active={firstCharacterMove.active}
             recovery={firstCharacterMove.missRecovery} />
@@ -36,6 +37,7 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
       {secondCharacterMove &&
         <div className='mb-6'>
           <BarMeter
+            name={secondCharacterName}
             startup={secondCharacterMove.startup}
             active={secondCharacterMove.active}
             recovery={secondCharacterMove.missRecovery} />
