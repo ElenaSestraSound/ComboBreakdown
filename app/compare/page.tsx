@@ -5,6 +5,7 @@ import { Character, Move } from '@/utils/types';
 import DropdownSelector from './DropdownSelector/DropdownSelector';
 import DropdownCharacterSelector from './DropdownSelector/DropdownCharacterSelector';
 import { ResultBox } from './ResultBox/ResultBox';
+import Image from 'next/image';
 
 export default function Compare () {
   const characterList = listToPairs(characters);
@@ -51,7 +52,7 @@ export default function Compare () {
               onChangeSelection={onSelectFirstCharacterMove} />}
         </div>
         <div className='w-full text-center self-center text-4xl font-bold'>
-          VS
+          <Image src={'/common/vs.png'} alt={'An image of VS letters'} layout='responsive' width={100} height={100} />
         </div>
         <div className='w-full'>
           <div className='mb-4'>
