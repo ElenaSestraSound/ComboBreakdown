@@ -26,6 +26,10 @@ body {
   overflow-x: hidden;
 }
 
+canvas {
+  z-index: 10;
+}
+
 header {
   background-color: rgba(var(--main-rgb), 0.15);
 }

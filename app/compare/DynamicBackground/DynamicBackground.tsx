@@ -25,7 +25,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentLeft &&
           <div className='fixed w-full'>
-            <Image className='opacity-40'
+            <Image className='opacity-70'
               src={`/dynamicBackground/left/${currentLeft}.png`}
               alt={`An image of ${currentLeft}`}
               layout='responsive'
@@ -44,7 +44,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentRight &&
           <div className='fixed w-full'>
-            <Image className='opacity-40'
+            <Image className='opacity-70'
               src={`/dynamicBackground/right/${currentRight}.png`}
               alt={`An image of ${currentRight}`}
               layout='responsive'
