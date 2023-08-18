@@ -2,7 +2,11 @@ import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image'
 
-export default function CharacterPage({ searchParams }) {
+type ICharacterPage = {
+  searchParams: { [key: string]: string | string[] | undefined}
+}
+
+export default function CharacterPage({ searchParams }: ICharacterPage) {
   // console.log('look at this poop... I mean prop :)', searchParams.charName);
 
   const charObj = use(getCharacters()); // Get data from app service
@@ -24,10 +28,10 @@ export default function CharacterPage({ searchParams }) {
         <div id="moves" className="p-24 static">
           <div id="controller-options" className=" w-96 shadow-inner bg-gradient-to-r from-purple-950 to-indigo-900 p-3 px-4 flex justify-around rounded">
             <div>
-            <button className="" type="button"><Image height={10} width={100} src="/moveBtn/logo-classic.png" alt="Classic"></Image></button>
+            <button title='1' className="" type="button"><Image height={10} width={100} src="/moveBtn/logo-classic.png" alt="Classic"></Image></button>
             </div>
             <div>
-            <button type="button"><Image height={10} width={100} src="/moveBtn/logo-modern.png" alt="Modern"></Image></button>
+            <button title='2' type="button"><Image height={10} width={100} src="/moveBtn/logo-modern.png" alt="Modern"></Image></button>
             </div>
           </div>
           <ul>
