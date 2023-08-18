@@ -35,12 +35,14 @@ export const options = {
   indexAxis: 'y',
   plugins: {
     legend: {
-      labels: {
-        filter: (legendItem: any) => (legendItem.text !== '-')
-      }
+      display: false
     },
     tooltip: {
       enabled: false
     },
+  },
+  animation: {
+    duration: 200,
+    easing: 'easeInExpo'
   },
 };

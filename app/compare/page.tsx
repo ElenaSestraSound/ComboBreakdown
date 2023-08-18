@@ -23,7 +23,7 @@ export default function Compare () {
   };
 
   const onSelectSecondCharacterMove = (index: number) => {
-    setSecondCharacterMove(firstCharacter!.moves![index]);
+    setSecondCharacterMove(secondCharacter!.moves![index]);
   };
 
   const onSelectSecondCharacter = (index: number) => {
@@ -43,7 +43,7 @@ export default function Compare () {
           </div>
           {firstCharacter &&
             <DropdownSelector
-              // by adding this key the component knows that the caracter selection
+              // by adding this key the component knows that the character selection
               // has changed and it resets to its default value
               key={firstCharacter.name}
               list={listToPairs(firstCharacter.moves!)}
@@ -63,7 +63,7 @@ export default function Compare () {
           </div>
           {secondCharacter &&
             <DropdownSelector
-              // by adding this key the component knows that the caracter selection
+              // by adding this key the component knows that the character selection
               // has changed and it resets to its default value
               key={secondCharacter.name}
               list={listToPairs(secondCharacter.moves!)}
