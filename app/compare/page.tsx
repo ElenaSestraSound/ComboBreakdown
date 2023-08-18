@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { characters } from './mockCharacters';
-import { Character, Move } from '@/utils/types';
+import { Character, Move } from './types';
 import DropdownSelector from './DropdownSelector/DropdownSelector';
 import DropdownCharacterSelector from './DropdownSelector/DropdownCharacterSelector';
 import { ResultBox } from './ResultBox/ResultBox';
