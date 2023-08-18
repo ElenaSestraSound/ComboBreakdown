@@ -36,7 +36,7 @@ export default function Compare () {
   return (
     <>
       <DynamicBackground left={firstCharacter?.name} right={secondCharacter?.name} />
-      <div className='max-w-4xl mx-auto p-20'>
+      <div className='max-w-4xl mx-auto py-20 px-10 md:px-20'>
         <div className='block basis-1/3 mb-8 md:flex'>
           <div className='w-full'>
             <div className='mb-4'>

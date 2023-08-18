@@ -22,8 +22,8 @@ export default function DropdownSelector ({ list, title, onChangeSelection, alig
   const [localList, reOrderLocalList] = useState<Details[]>(list);
 
   const divClass = alignRight
-    ? 'px-6 cursor-pointer h-20 bg-cover bg-center flex flex-col justify-center rounded-lg text-right'
-    : 'px-6 cursor-pointer h-20 bg-cover bg-center flex flex-col justify-center rounded-lg';
+    ? 'px-6 min-w-[245px] cursor-pointer h-20 bg-cover bg-center flex flex-col justify-center rounded-lg text-right'
+    : 'px-6 min-w-[245px] cursor-pointer h-20 bg-cover bg-center flex flex-col justify-center rounded-lg';
 
   const onClickHandler = (e: MouseEvent<HTMLElement>) => {
     const targetElement = e.target as HTMLElement;
