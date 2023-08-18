@@ -12,9 +12,11 @@ export default function CharacterPage ({ searchParams }: ICharacterPage) {
 
   const charObj = use(getCharacters()); // Get data from app service
   console.log("🚀 ~ file: page.tsx:14 ~ CharacterPage ~ charObj:", charObj);
-
+  
   const charDisp = charObj?.filter(x => x.name === searchParams.charName);
   const bckURL = "'/characterpage/" + searchParams.charName + ".png'";
+  const bckURL2 = `'/characterpage/${searchParams.charName}.png'`;
+  console.log('show me ur L',bckURL, bckURL2); 
 
   return (
     <div className="character-page h-full flex flex-row justify-around relative" style={{ backgroundImage: `url(${bckURL})` }}>
@@ -56,7 +58,7 @@ export default function CharacterPage ({ searchParams }: ICharacterPage) {
                         <span>
 
                           <Image
-                            src={"/moveBtn/icon_" + move.classic[1] + move.classic[0] + ".png"}
+                            src={`/moveBtn/icon_${move.classic[1] + move.classic[0]}.png`}
                             height={20}
                             width={25}
                             alt="Move-Btn"
