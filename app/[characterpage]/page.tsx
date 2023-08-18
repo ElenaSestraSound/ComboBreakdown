@@ -1,6 +1,7 @@
 import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image'
+import moveComponent from '@/app/main/move-component';
 
 export default function CharacterPage({ searchParams }) {
   // console.log('look at this poop... I mean prop :)', searchParams.charName);
@@ -14,7 +15,7 @@ export default function CharacterPage({ searchParams }) {
       {/* tailwind prop: opacity-10 */}
       <div className="overlay h-full flex flex-row justify-around">
         <div id="bio" className="p-24 w-2/5 sticky">
-          <h2 className="text-4xl">{charDisp ? charDisp[0]['name'] : 'CharTitle'}</h2>
+          <h2 className="text-4xl">{charDisp ? charDisp[0]['name'].toUpperCase() : 'CharTitle'}</h2>
           <p>{charDisp ? charDisp[0]['height'] : 'CharHeight'}</p>
           <p>{charDisp ? charDisp[0]['weight'] : 'CharWeight'}</p>
           <p>{charDisp ? charDisp[0]['like'] : 'CharLike'}</p>
@@ -22,7 +23,7 @@ export default function CharacterPage({ searchParams }) {
           <p>{charDisp ? charDisp[0]['bio'] : 'CharBio'}</p>
         </div>
         <div id="moves" className="p-24 static">
-          <div id="controller-options" className=" w-96 shadow-inner bg-gradient-to-r from-purple-950 to-indigo-900 p-3 px-4 flex justify-around rounded shadow-md">
+          <div id="controller-options" className=" w-96 shadow-inner bg-gradient-to-r from-purple-950 to-indigo-900 p-3 px-4 flex justify-around rounded">
             <div>
             <button className="" type="button"><Image height={10} width={100} src="/moveBtn/logo-classic.png" alt="Classic"></Image></button>
             </div>
@@ -31,24 +32,37 @@ export default function CharacterPage({ searchParams }) {
             </div>
           </div>
           <ul>
-            {charDisp &&
+            {
+              charDisp &&
               charDisp[0]['moves'].map((move) => (
-                <li key={move.id}>
-                  <div className="flex w-96 items-center p-3 bg-purple-950 my-5 rounded shadow-inner">
-                    <Image
-                      src="/moves/101.jpg"
-                      height={56}
-                      width={56}
-                      alt="Move-Image"
-                      className="w-auto rounded shadow-md"
-                    />
-                    <div className="text-center pl-3">
-                    <p>{move.name}</p>
-                    <p>{move.classic}</p>
+      <li key={move.id}>
+        <div className="flex w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+          <Image
+            src="/moves/101.jpg"
+            height={56}
+            width={56}
+            alt="Move-Image"
+            className="w-auto rounded shadow-md"
+            />
+            <div className="text-center pl-3">
+                      <p>{move.name}</p>
+                      <div className="flex px-5 py-1">
+                        <span>
+
+                      <Image
+                        src={"/moveBtn/icon_" + move.classic[1] + move.classic[0] + ".png"}
+                        height={20}
+                        width={25}
+                        alt="Move-Btn"
+                        className=""
+                        />
+                        </span>
+                          <span className="px-2">{ move.classic[0] }</span>
+                        </div>
                     </div>
                   </div>
-                </li>
-            ))}
+                </li >
+              ))}
           </ul>
         </div>
       </div>
