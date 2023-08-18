@@ -1,7 +1,6 @@
 import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image'
-import moveComponent from '@/app/main/move-component';
 
 export default function CharacterPage({ searchParams }) {
   // console.log('look at this poop... I mean prop :)', searchParams.charName);
