@@ -18,7 +18,7 @@ export default function RootLayout ({
   return (
     <html lang="en">
       <body className={oswald.className} data-testid="cbd">
-        <div className="h-full grid grid-rows-[auto_1fr]">
+        <div className="h-full grid grid-rows-[auto_1fr] absolute">
           <Header />
           <main>
             {children}
