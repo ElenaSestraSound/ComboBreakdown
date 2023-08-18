@@ -66,7 +66,7 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
   };
 
   return (
-    <div className='w-full flex justify-center'>
+    <div className='w-full flex justify-center z-10'>
       <Bar
         data={data}
         height={90}
