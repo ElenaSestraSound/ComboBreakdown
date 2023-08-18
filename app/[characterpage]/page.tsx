@@ -6,6 +6,7 @@ type ICharacterPage = {
   searchParams: { [key: string]: string | string[] | undefined}
 }
 
+
 export default function CharacterPage({ searchParams }: ICharacterPage) {
   // console.log('look at this poop... I mean prop :)', searchParams.charName);
 
