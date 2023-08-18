@@ -59,9 +59,9 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         leaveTo="opacity-0 -translate-x-full"
       >
         {currentLeft &&
-          <div className='absolute w-full bg-black'>
-            <Image className='opacity-10'
-              src={`/cards/left/${currentLeft}.jpg`}
+          <div className='absolute w-full'>
+            <Image className='opacity-40'
+              src={`/dynamicBackground/left/${currentLeft}.png`}
               alt={`An image of ${currentLeft}`}
               layout='responsive'
               width={100}
@@ -78,9 +78,9 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         leaveTo="opacity-0 translate-x-full"
       >
         {right &&
-          <div className='absolute w-full bg-black'>
-            <Image className='opacity-10'
-              src={`/cards/right/${currentRight}.jpg`}
+          <div className='absolute w-full'>
+            <Image className='opacity-40'
+              src={`/dynamicBackground/right/${currentRight}.png`}
               alt={`An image of ${currentRight}`}
               layout='responsive'
               width={100}
