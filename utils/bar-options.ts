@@ -32,7 +32,7 @@ export const options = {
   },
   responsive: true,
   maintainAspectRatio: false,
-  indexAxis: 'y',
+  indexAxis: 'y' as 'y',
   plugins: {
     legend: {
       display: false
@@ -43,6 +43,6 @@ export const options = {
   },
   animation: {
     duration: 200,
-    easing: 'easeInExpo'
+    easing: 'easeInExpo' as 'easeInExpo'
   },
 };
