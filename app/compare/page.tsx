@@ -25,7 +25,7 @@ export default function Compare () {
   };
 
   const onSelectSecondCharacterMove = (index: number) => {
-    setSecondCharacterMove(firstCharacter!.moves![index]);
+    setSecondCharacterMove(secondCharacter!.moves![index]);
   };
 
   const onSelectSecondCharacter = (index: number) => {

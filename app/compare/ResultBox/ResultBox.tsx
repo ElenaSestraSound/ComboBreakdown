@@ -21,7 +21,7 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
       if (difference > 0) return setWinner(secondCharacterName! + ' wins!');
       if (difference === 0) return setWinner('DRAW');
     }
-  }, [firstCharacterMove, secondCharacterMove]);
+  }, [firstCharacterMove, firstCharacterName, secondCharacterMove, secondCharacterName]);
 
   return (
     <>
