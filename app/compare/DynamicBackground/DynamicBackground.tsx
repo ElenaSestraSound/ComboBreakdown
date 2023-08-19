@@ -42,7 +42,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         {currentRight &&
           <div className='fixed w-full'>
             <img
-              className='opacity-80'
+              className='opacity-80 '
               src={`/dynamicBackground/right/${currentRight}.png`} />
           </div>
         }
