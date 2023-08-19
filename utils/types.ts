@@ -39,5 +39,15 @@ export type Move = {
 
 export interface ICharacterList {
   characters: Character[];
-  moves?: Move[]; 
+  moves?: Move[];
+};
+
+export type GlossaryItem = {
+  term: string,
+  def: string,
+  altterm?: string[],
+  games?: string[],
+  image?: string[],
+  video?: string[],
+  jp?: string;
 };
