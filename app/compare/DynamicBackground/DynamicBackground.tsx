@@ -2,7 +2,7 @@ import * as React from 'react';
 import NextImage, { ImageLoader } from 'next/image';
 import { Transition } from '@headlessui/react';
 import useDynamicBackground from './useDynamicBackground';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface IDynamicBackgroundProps {
   left?: string,
@@ -13,23 +13,27 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
   const { currentSelection: currentLeft, show: leftShow } = useDynamicBackground(left);
   const { currentSelection: currentRight, show: rightShow } = useDynamicBackground(right);
 
-  const preloadImage = (src: string) => {
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      image.src = src;
-      image.onload = resolve;
-      image.onerror = reject;
-    });
-  };
+  const [imgLeft, setImgLeft] = useState('');
+  const [imgRight, setImgRight] = useState('');
 
   useEffect(() => {
-    const imgPath = `/dynamicBackground/left/${currentLeft}.png`;
-    preloadImage(imgPath);
+    const imagePath = `/dynamicBackground/left/${currentLeft}.png`;
+    const img = new Image();
+    img.src = imagePath;
+    img.onload = () => {
+      console.log(`Image preloaded: ${imagePath}`);
+      setImgLeft(imagePath);
+    };
   }, [currentLeft]);
 
   useEffect(() => {
-    const imgPath = `/dynamicBackground/left/${currentRight}.png`;
-    preloadImage(imgPath);
+    const imagePath = `/dynamicBackground/right/${currentRight}.png`;
+    const img = new Image();
+    img.src = imagePath;
+    img.onload = () => {
+      console.log(`Image preloaded: ${imagePath}`);
+      setImgRight(imagePath);
+    };
   }, [currentRight]);
 
   return (
@@ -45,7 +49,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         {currentLeft &&
           <div className='fixed w-full'>
             <NextImage className='opacity-80'
-              src={`/dynamicBackground/left/${currentLeft}.png`}
+              src={imgLeft}
               alt={`An image of ${currentLeft}`}
               layout='responsive'
               width={100}
@@ -64,7 +68,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         {currentRight &&
           <div className='fixed w-full'>
             <NextImage className='opacity-80'
-              src={`/dynamicBackground/right/${currentRight}.png`}
+              src={imgRight}
               alt={`An image of ${currentRight}`}
               layout='responsive'
               width={100}
