@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Image from 'next/image';
+import NextImage, { ImageLoader } from 'next/image';
 import { Transition } from '@headlessui/react';
-import { useEffect, useState } from 'react';
 import useDynamicBackground from './useDynamicBackground';
+import { useEffect } from 'react';
 
 export interface IDynamicBackgroundProps {
   left?: string,
@@ -12,6 +12,25 @@ export interface IDynamicBackgroundProps {
 export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
   const { currentSelection: currentLeft, show: leftShow } = useDynamicBackground(left);
   const { currentSelection: currentRight, show: rightShow } = useDynamicBackground(right);
+
+  const preloadImage = (src: string) => {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.src = src;
+      image.onload = resolve;
+      image.onerror = reject;
+    });
+  };
+
+  useEffect(() => {
+    const imgPath = `/dynamicBackground/left/${currentLeft}.png`;
+    preloadImage(imgPath);
+  }, [currentLeft]);
+
+  useEffect(() => {
+    const imgPath = `/dynamicBackground/left/${currentRight}.png`;
+    preloadImage(imgPath);
+  }, [currentRight]);
 
   return (
     <>
@@ -25,9 +44,12 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentLeft &&
           <div className='fixed w-full'>
-            <img
-              className='opacity-80'
-              src={`/dynamicBackground/left/${currentLeft}.png`} />
+            <NextImage className='opacity-80'
+              src={`/dynamicBackground/left/${currentLeft}.png`}
+              alt={`An image of ${currentLeft}`}
+              layout='responsive'
+              width={100}
+              height={100} />
           </div>
         }
       </Transition>
@@ -41,9 +63,12 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentRight &&
           <div className='fixed w-full'>
-            <img
-              className='opacity-80 '
-              src={`/dynamicBackground/right/${currentRight}.png`} />
+            <NextImage className='opacity-80'
+              src={`/dynamicBackground/right/${currentRight}.png`}
+              alt={`An image of ${currentRight}`}
+              layout='responsive'
+              width={100}
+              height={100} />
           </div>
         }
       </Transition>
