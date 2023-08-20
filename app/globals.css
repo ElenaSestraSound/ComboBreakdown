@@ -80,6 +80,10 @@ summary:hover {
   transition: all 50ms ease-in;
 }
 
+.glossary-page .overlay {
+  background: rgba(var(--background-rgb), 0.75);
+}
+
 .glossary-page form {
   color: black;
 }

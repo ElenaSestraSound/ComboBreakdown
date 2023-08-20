@@ -53,36 +53,38 @@ export default function Glossary () {
   }, [currentPage, filteredData]);
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-10 md:px-20 glossary-page">
-      <div>
-        <form>
-          <label htmlFor="glossary-filter">Search Glossary</label>
-          <input id="glossary-filter" type="text" value={query} onChange={handleSearchChange} className="py-1 p-2 my-2 w-full rounded" />
-        </form>
-        <ul className="filter-letters mb-8">
-          {filterLetters.map((letter) => {
-            return (<li key={letter}><a onClick={handleLetterFilterClick} href={`#${letter}`} className={activeLetter === letter ? `active` : ``}>{`${letter}`}</a></li>);
-          })}
+    <div className="max-w-4xl mx-auto  glossary-page bg-[url('/characterpage/juri.png')]">
+      <div className="overlay h-full w-full py-10 px-10 md:px-20">
+        <div>
+          <form>
+            <label htmlFor="glossary-filter">Search Glossary</label>
+            <input id="glossary-filter" type="text" value={query} onChange={handleSearchChange} className="py-1 p-2 my-2 w-full rounded" />
+          </form>
+          <ul className="filter-letters mb-8">
+            {filterLetters.map((letter) => {
+              return (<li key={letter}><a onClick={handleLetterFilterClick} href={`#${letter}`} className={activeLetter === letter ? `active` : ``}>{`${letter}`}</a></li>);
+            })}
+          </ul>
+        </div>
+        <ul className="w-full">
+          {currentData && currentData.map((item) => {
+            return (
+              <li key={item.term}>
+                <GlossaryListItem item={item}></GlossaryListItem>
+              </li>
+            );
+          }
+          )}
         </ul>
-      </div>
-      <ul className="w-full">
-        {currentData && currentData.map((item) => {
-          return (
-            <li key={item.term}>
-              <GlossaryListItem item={item}></GlossaryListItem>
-            </li>
-          );
-        }
-        )}
-      </ul>
-      <div className="w-full mt-3">
-        <Pagination
-          className="pagination-bar"
-          currentPage={currentPage}
-          totalCount={filteredData.length}
-          pageSize={pageSize}
-          onPageChange={(page: number) => setCurrentPage(page)}
-        />
+        <div className="w-full mt-3">
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={filteredData.length}
+            pageSize={pageSize}
+            onPageChange={(page: number) => setCurrentPage(page)}
+          />
+        </div>
       </div>
     </div>
   );
