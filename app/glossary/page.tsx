@@ -58,7 +58,7 @@ export default function Glossary () {
         <div>
           <form>
             <label htmlFor="glossary-filter">Search Glossary</label>
-            <input id="glossary-filter" type="text" value={query} onChange={handleSearchChange} className="py-1 p-2 my-2 w-full rounded" />
+            <input id="glossary-filter" type="text" value={query} onChange={handleSearchChange} placeholder="Search..." className="py-1 p-2 mt-1 mb-2 w-full rounded" />
           </form>
           <ul className="filter-letters mb-8">
             {filterLetters.map((letter) => {
