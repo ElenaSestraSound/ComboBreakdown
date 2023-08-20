@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import GlossaryListItem from './glossary-list-item';
 import { GlossaryItem } from '@/utils/types';
+import Pagination from '@/utils/Pagination';
 import data from '@/public/glossary.json';
 
 export default function Glossary () {
@@ -20,6 +21,7 @@ export default function Glossary () {
     });
     setActiveLetter('');
     setFilteredData(newFilteredData);
+    setCurrentPage(1);
   };
   const handleLetterFilterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -40,10 +42,18 @@ export default function Glossary () {
     }
     setQuery('');
     setFilteredData(newFilteredData);
+    setCurrentPage(1);
   };
+  const pageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const currentData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return filteredData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, filteredData]);
 
   return (
-    <div className="max-w-4xl mx-auto py-20 px-10 md:px-20 glossary-page">
+    <div className="max-w-4xl mx-auto py-10 px-10 md:px-20 glossary-page">
       <div>
         <form>
           <label htmlFor="glossary-filter">Search Glossary</label>
@@ -56,7 +66,7 @@ export default function Glossary () {
         </ul>
       </div>
       <ul className="w-full">
-        {filteredData && filteredData.map((item) => {
+        {currentData && currentData.map((item) => {
           return (
             <li key={item.term}>
               <GlossaryListItem item={item}></GlossaryListItem>
@@ -65,6 +75,15 @@ export default function Glossary () {
         }
         )}
       </ul>
+      <div className="w-full mt-3">
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={filteredData.length}
+          pageSize={pageSize}
+          onPageChange={(page: number) => setCurrentPage(page)}
+        />
+      </div>
     </div>
   );
 }
