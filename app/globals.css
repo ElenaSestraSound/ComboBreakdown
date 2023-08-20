@@ -66,7 +66,11 @@ header nav .active:hover {
 header nav .active:hover {
   cursor: default;
 }
+
 .character-page .overlay {
-  
-  background: rgba(var(--background-rgb),0.5);
+  background: rgba(var(--background-rgb), 0.5);
+}
+
+.recharts-responsive-container {
+  border-top: 2px solid black;
 }
