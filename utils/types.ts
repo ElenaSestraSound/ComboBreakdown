@@ -51,3 +51,7 @@ export type GlossaryItem = {
   video?: string[],
   jp?: string;
 };
+
+export interface IGlossaryListItem {
+  item: GlossaryItem;
+}

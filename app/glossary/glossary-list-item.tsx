@@ -1,10 +1,6 @@
-import { GlossaryItem } from "@/utils/types";
+import { IGlossaryListItem } from "@/utils/types";
 
-interface IGlossaryItem {
-  item: GlossaryItem;
-}
-
-export default function GlossaryListItem ({ item }: IGlossaryItem) {
+export default function GlossaryListItem ({ item }: IGlossaryListItem) {
   return (
     <details>
       <summary className="mb-5 p-2 bg-purple-900 hover:bg-purple-800 rounded-lg cursor-pointer">{item.term}</summary>
