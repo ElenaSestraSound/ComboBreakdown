@@ -24,7 +24,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentLeft &&
           <div className='fixed w-full opacity-70 bg-cover md:h-screen h-[60vh]'
-            style={{ "backgroundImage": `url(/dynamic/left/${currentLeft}.png)` }}>
+            style={{ "backgroundImage": `url(/dynamic/left/${currentLeft.toLowerCase()}.png)` }}>
           </div>
         }
       </Transition>
@@ -38,7 +38,7 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
       >
         {currentRight &&
           <div className='fixed w-full opacity-70 bg-cover md:h-screen h-1/2 h-[60vh]'
-            style={{ "backgroundImage": `url(/dynamic/right/${currentRight}.png)` }}>
+            style={{ "backgroundImage": `url(/dynamic/right/${currentRight.toLocaleLowerCase()}.png)` }}>
           </div>
         }
       </Transition>
