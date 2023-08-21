@@ -24,13 +24,8 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         leaveTo="opacity-0 -translate-x-full"
       >
         {currentLeft &&
-          <div className='fixed w-full'>
-            <Image className='opacity-80'
-              src={`/dynamicBackground/left/${currentLeft}.png`}
-              alt={`An image of ${currentLeft}`}
-              layout='responsive'
-              width={100}
-              height={100} />
+          <div className='fixed w-full opacity-70 bg-cover md:h-screen h-[60vh]'
+            style={{ "backgroundImage": `url(/dynamicBackground/left/${currentLeft}.png)` }}>
           </div>
         }
       </Transition>
@@ -43,13 +38,8 @@ export function DynamicBackground ({ left, right }: IDynamicBackgroundProps) {
         leaveTo="opacity-0 translate-x-full"
       >
         {currentRight &&
-          <div className='fixed w-full'>
-            <Image className='opacity-80'
-              src={`/dynamicBackground/right/${currentRight}.png`}
-              alt={`An image of ${currentRight}`}
-              layout='responsive'
-              width={100}
-              height={100} />
+          <div className='fixed w-full opacity-70 bg-cover md:h-screen h-1/2 h-[60vh]'
+            style={{ "backgroundImage": `url(/dynamicBackground/right/${currentRight}.png)` }}>
           </div>
         }
       </Transition>
