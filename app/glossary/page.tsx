@@ -54,7 +54,7 @@ export default function Glossary () {
 
   return (
     <div className="max-w-4xl mx-auto h-full glossary-page bg-[url('/characterpage/juri.png')]">
-      <div className="overlay h-full w-full py-10 px-10 md:px-20">
+      <div className="overlay h-full w-full py-10 lg:px-10 md:px-20 px-2">
         <div>
           <form>
             <label htmlFor="glossary-filter">Search Glossary</label>

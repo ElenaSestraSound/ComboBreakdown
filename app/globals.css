@@ -129,14 +129,19 @@ details summary {
   cursor: pointer;
 }
 
+details p {
+  transition: all .25s ease-in;
+}
+
 details[open] p {
-  animation: animateDown 0.2s linear forwards;
+  animation-name: animateDown;
+  animation-duration: 0.3s, 2s;
 }
 
 @keyframes animateDown {
   0% {
     opacity: 0;
-    transform: translatey(-15px);
+    transform: translatey(-10px);
   }
 
   100% {
