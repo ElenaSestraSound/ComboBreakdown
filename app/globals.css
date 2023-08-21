@@ -67,7 +67,9 @@ header nav .active:hover {
   cursor: default;
 }
 
+
 .character-page .overlay {
+
   background: rgba(var(--background-rgb), 0.5);
 }
 
@@ -120,4 +122,8 @@ summary:hover {
 .filter-letters .active,
 .filter-letters .active:hover {
   background-color: rgba(var(--highlight-rgb), 1);
+}
+
+.recharts-responsive-container {
+  border-top: 2px solid black;
 }
