@@ -102,6 +102,7 @@ summary:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .filter-letters li {
@@ -122,6 +123,26 @@ summary:hover {
 .filter-letters .active,
 .filter-letters .active:hover {
   background-color: rgba(var(--highlight-rgb), 1);
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details[open] p {
+  animation: animateDown 0.2s linear forwards;
+}
+
+@keyframes animateDown {
+  0% {
+    opacity: 0;
+    transform: translatey(-15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
 }
 
 .recharts-responsive-container {
