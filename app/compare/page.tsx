@@ -41,50 +41,42 @@ export default function Compare () {
         <div className='block basis-1/3 mb-8 md:flex'>
           <div className='w-full'>
             <div className='mb-4'>
-              <Animate>
-                <DropdownCharacterSelector
-                  list={characterList}
-                  title={'SELECT A CHARACTER'}
-                  onChangeSelection={onSelectFirstCharacter} />
-              </Animate>
+              <DropdownCharacterSelector
+                list={characterList}
+                title={'SELECT A CHARACTER'}
+                onChangeSelection={onSelectFirstCharacter} />
             </div>
             {firstCharacter &&
-              <Animate>
-                <DropdownSelector
-                  // by adding this key the component knows that the caracter selection
-                  // has changed and it resets to its default value
-                  key={firstCharacter.name}
-                  list={listToPairs(firstCharacter.moves!)}
-                  title={'SELECT MOVE'}
-                  onChangeSelection={onSelectFirstCharacterMove} />
-              </Animate>
+              <DropdownSelector
+                // by adding this key the component knows that the caracter selection
+                // has changed and it resets to its default value
+                key={firstCharacter.name}
+                list={listToPairs(firstCharacter.moves!)}
+                title={'SELECT MOVE'}
+                onChangeSelection={onSelectFirstCharacterMove} />
             }
           </div>
-          <div className='w-1/2 mx-auto md:w-full z-10 m-w-min'>
+          <div className='w-1/2 mx-auto md:w-full m-w-min'>
             <Animate>
               <Image src={'/common/vs.png'} alt={'An image of VS letters'} layout='responsive' width={100} height={100} />
             </Animate>
           </div>
           <div className='w-full'>
             <div className='mb-4'>
-              <Animate>
-                <DropdownCharacterSelector
-                  list={characterList}
-                  title={'SELECT A CHARACTER'}
-                  onChangeSelection={onSelectSecondCharacter}
-                  alignRight={true} />
-              </Animate>
+              <DropdownCharacterSelector
+                list={characterList}
+                title={'SELECT A CHARACTER'}
+                onChangeSelection={onSelectSecondCharacter}
+                alignRight={true} />
             </div>
             {secondCharacter &&
-              <Animate>
-                <DropdownSelector
-                  // by adding this key the component knows that the caracter selection
-                  // has changed and it resets to its default value
-                  key={secondCharacter.name}
-                  list={listToPairs(secondCharacter.moves!)}
-                  title={'SELECT MOVE'}
-                  onChangeSelection={onSelectSecondCharacterMove} />
-              </Animate>
+              <DropdownSelector
+                // by adding this key the component knows that the caracter selection
+                // has changed and it resets to its default value
+                key={secondCharacter.name}
+                list={listToPairs(secondCharacter.moves!)}
+                title={'SELECT MOVE'}
+                onChangeSelection={onSelectSecondCharacterMove} />
             }
           </div>
         </div>

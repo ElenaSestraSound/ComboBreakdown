@@ -15,10 +15,10 @@ export default function Animate ({ children }: IAnimateProps) {
 
   return (
     <Transition show={show}
-      enter="transition-all ease-in-out duration-500 delay-[200ms]"
+      enter="transition-all ease-in-out duration-1000 delay-[200ms]"
       enterFrom="opacity-0 -translate-y-6"
       enterTo="opacity-100 translate-y-0"
-      leave="transition-all ease-in-out duration-300"
+      leave="transition-all ease-in-out duration-1000"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >

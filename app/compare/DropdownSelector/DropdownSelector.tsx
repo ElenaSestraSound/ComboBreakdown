@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { MouseEvent, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import Animate from '../Animate/Animate';
 type Details = {
   name: string,
   index: number;
@@ -38,11 +39,13 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
 
   return (
     <div className='relative'>
-      <div
-        className='p-2 bg-purple-900 cursor-pointer hover:bg-purple-800 rounded-lg'
-        onClick={() => setMenuShown(prev => !prev)}>
-        <span>{selection ? selection.name : title}</span>
-      </div>
+      <Animate>
+        <div
+          className='p-2 bg-purple-900 cursor-pointer hover:bg-purple-800 rounded-lg'
+          onClick={() => setMenuShown(prev => !prev)}>
+          <span>{selection ? selection.name : title}</span>
+        </div>
+      </Animate>
       {menuShown &&
         <div className='absolute top-0 w-full h-72 z-10 rounded-lg'>
           {localList.map((character) => <div
