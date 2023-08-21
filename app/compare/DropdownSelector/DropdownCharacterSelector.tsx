@@ -61,7 +61,7 @@ export default function DropdownSelector ({ list, title, onChangeSelection, alig
         </div>
       </Animate>
       {menuShown &&
-        <div className='absolute top-0 w-full h-72 z-30'>
+        <div className='absolute top-0 w-full h-72 z-30 overflow-x-hidden overflow-y-scroll'>
           {localList.map((character) => <div
             data-index={character.index} //don't move this property from first position
             className={divClass}
