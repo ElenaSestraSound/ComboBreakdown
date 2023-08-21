@@ -3,6 +3,7 @@ import * as React from 'react';
 import { MouseEvent, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import Animate from '../Animate/Animate';
+
 type Details = {
   name: string,
   index: number;
