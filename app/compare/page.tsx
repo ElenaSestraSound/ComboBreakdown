@@ -7,6 +7,7 @@ import DropdownCharacterSelector from './DropdownSelector/DropdownCharacterSelec
 import { ResultBox } from './ResultBox/ResultBox';
 import Image from 'next/image';
 import { DynamicBackground } from './DynamicBackground/DynamicBackground';
+import Animate from './Animate/Animate';
 
 export default function Compare () {
   const characterList = listToPairs(characters);
@@ -40,39 +41,51 @@ export default function Compare () {
         <div className='block basis-1/3 mb-8 md:flex'>
           <div className='w-full'>
             <div className='mb-4'>
-              <DropdownCharacterSelector
-                list={characterList}
-                title={'SELECT A CHARACTER'}
-                onChangeSelection={onSelectFirstCharacter} />
+              <Animate>
+                <DropdownCharacterSelector
+                  list={characterList}
+                  title={'SELECT A CHARACTER'}
+                  onChangeSelection={onSelectFirstCharacter} />
+              </Animate>
             </div>
             {firstCharacter &&
-              <DropdownSelector
-                // by adding this key the component knows that the caracter selection
-                // has changed and it resets to its default value
-                key={firstCharacter.name}
-                list={listToPairs(firstCharacter.moves!)}
-                title={'SELECT MOVE'}
-                onChangeSelection={onSelectFirstCharacterMove} />}
+              <Animate>
+                <DropdownSelector
+                  // by adding this key the component knows that the caracter selection
+                  // has changed and it resets to its default value
+                  key={firstCharacter.name}
+                  list={listToPairs(firstCharacter.moves!)}
+                  title={'SELECT MOVE'}
+                  onChangeSelection={onSelectFirstCharacterMove} />
+              </Animate>
+            }
           </div>
           <div className='w-1/2 mx-auto md:w-full z-10 m-w-min'>
-            <Image src={'/common/vs.png'} alt={'An image of VS letters'} layout='responsive' width={100} height={100} />
+            <Animate>
+              <Image src={'/common/vs.png'} alt={'An image of VS letters'} layout='responsive' width={100} height={100} />
+            </Animate>
           </div>
           <div className='w-full'>
             <div className='mb-4'>
-              <DropdownCharacterSelector
-                list={characterList}
-                title={'SELECT A CHARACTER'}
-                onChangeSelection={onSelectSecondCharacter}
-                alignRight={true} />
+              <Animate>
+                <DropdownCharacterSelector
+                  list={characterList}
+                  title={'SELECT A CHARACTER'}
+                  onChangeSelection={onSelectSecondCharacter}
+                  alignRight={true} />
+              </Animate>
             </div>
             {secondCharacter &&
-              <DropdownSelector
-                // by adding this key the component knows that the caracter selection
-                // has changed and it resets to its default value
-                key={secondCharacter.name}
-                list={listToPairs(secondCharacter.moves!)}
-                title={'SELECT MOVE'}
-                onChangeSelection={onSelectSecondCharacterMove} />}
+              <Animate>
+                <DropdownSelector
+                  // by adding this key the component knows that the caracter selection
+                  // has changed and it resets to its default value
+                  key={secondCharacter.name}
+                  list={listToPairs(secondCharacter.moves!)}
+                  title={'SELECT MOVE'}
+                  onChangeSelection={onSelectSecondCharacterMove} />
+              </Animate>
+            }
           </div>
         </div>
         <ResultBox
