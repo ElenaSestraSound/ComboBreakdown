@@ -1,22 +1,14 @@
 import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image';
+import MoveElem from '@/app/main/Move/move';
+import { ICharacterPage } from "@/utils/types";
 
-type ICharacterPage = {
-  searchParams: { [key: string]: string | string[] | undefined; };
-};
-
-
-export default function CharacterPage ({ searchParams }: ICharacterPage) {
-  // console.log('look at this poop... I mean prop :)', searchParams.charName);
+export default function CharacterPage({ searchParams }: ICharacterPage) {
 
   const charObj = use(getCharacters()); // Get data from app service
-  console.log("🚀 ~ file: page.tsx:14 ~ CharacterPage ~ charObj:", charObj);
-  
   const charDisp = charObj?.filter(x => x.name === searchParams.charName);
-  const bckURL = "'/characterpage/" + searchParams.charName + ".png'";
-  const bckURL2 = `'/characterpage/${searchParams.charName}.png'`;
-  console.log('show me ur L',bckURL, bckURL2); 
+  const bckURL = `'/characterpage/${searchParams.charName}.png'`;
 
   return (
     <div className="character-page h-full flex flex-row justify-around relative" style={{ backgroundImage: `url(${bckURL})` }}>
@@ -43,33 +35,11 @@ export default function CharacterPage ({ searchParams }: ICharacterPage) {
             {
               charDisp &&
               charDisp[0]['moves'].map((move) => (
-                <li key={move.id}>
-                  <div className="flex w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
-                    <Image
-                      src="/moves/101.jpg"
-                      height={56}
-                      width={56}
-                      alt="Move-Image"
-                      className="w-auto rounded shadow-md"
-                    />
-                    <div className="text-center pl-3">
-                      <p>{move.name}</p>
-                      <div className="flex px-5 py-1">
-                        <span>
-
-                          <Image
-                            src={`/moveBtn/icon_${move.classic[1] + move.classic[0]}.png`}
-                            height={20}
-                            width={25}
-                            alt="Move-Btn"
-                            className=""
-                          />
-                        </span>
-                        <span className="px-2">{move.classic[0]}</span>
-                      </div>
-                    </div>
-                  </div>
-                </li >
+                  <MoveElem
+                  key={move.id}
+                  move = {move}
+                  />
+              
               ))}
           </ul>
         </div>
@@ -77,25 +47,3 @@ export default function CharacterPage ({ searchParams }: ICharacterPage) {
     </div>
   );
 }
-
-
-
-
-
-
-// FOR GETTING DATA FROM DB USING NEXT.JS STANDARDS:
-// import { useRouter } from 'next/navigation';
-// import { cache } from 'react';
-// import { prisma } from '@/lib/prisma';
-// import { useSearchParams } from "next/navigation";
-
-// const getOneChar = cache(async () => {
-//   try {
-//     let characters = await prisma.character.findFirst({name: SearchParams.charName });
-//     await prisma.$disconnect();
-//     console.log('Working? ',characters);
-//     return characters;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// });

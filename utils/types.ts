@@ -9,12 +9,12 @@ export type Character = {
   weight: string,
 };
 export type Move = {
-  id?: string;
-  character?: Character;
-  characterId?: string;
+  id: string;
+  character: Character;
+  characterId: string;
   name: string,
-  type?: string; // special/superArt/unique/common/throw/normal
   classic: string,
+  type?: string; // special/superArt/unique/common/throw/normal
   modern?: string,
   manual?: string, // only for special and super arts
   note?: string; // in some of the movements are notes like (During a Drive Parry)
@@ -40,4 +40,9 @@ export type Move = {
 export interface ICharacterList {
   characters: Character[];
   moves?: Move[]; 
+};
+
+export interface ICharacterPage  {
+  searchParams: { [key: string]: string | string[] | undefined; };
+  params: { [key: string]: Move | undefined; };
 };
