@@ -1,10 +1,6 @@
 import { act, render } from "@testing-library/react";
 import { DynamicBackground } from "./DynamicBackground";
 
-
-const altTextLeft = 'An image of Luke';
-const altTextRight = 'An image of Ken';
-
 describe('Dynamic Background', () => {
   it('should not show any images if no character is selected', async () => {
     await act(async () => {
