@@ -66,7 +66,90 @@ header nav .active:hover {
 header nav .active:hover {
   cursor: default;
 }
+
+
 .character-page .overlay {
-  
-  background: rgba(var(--background-rgb),0.5);
+
+  background: rgba(var(--background-rgb), 0.5);
+}
+
+summary {
+  display: flex;
+  transition: all 50ms ease-in;
+}
+
+summary:hover {
+  transition: all 50ms ease-in;
+}
+
+.glossary-page .overlay {
+  background: rgba(var(--background-rgb), 0.75);
+}
+
+.glossary-page form {
+  color: black;
+}
+
+.glossary-page label {
+  color: rgba(var(--highlight-rgb), 1)
+}
+
+.glossary-page input {
+  border: 0;
+}
+
+.filter-letters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filter-letters li {
+  display: flex;
+}
+
+.filter-letters a {
+  display: flex;
+  text-transform: uppercase;
+  padding: 0 8px 2px;
+  border-radius: 5px;
+}
+
+.filter-letters a:hover {
+  background-color: rgba(var(--main-rgb), 1);
+}
+
+.filter-letters .active,
+.filter-letters .active:hover {
+  background-color: rgba(var(--highlight-rgb), 1);
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details p {
+  transition: all .25s ease-in;
+}
+
+details[open] p {
+  animation-name: animateDown;
+  animation-duration: 0.3s, 2s;
+}
+
+@keyframes animateDown {
+  0% {
+    opacity: 0;
+    transform: translatey(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+.recharts-responsive-container {
+  border-top: 2px solid black;
 }

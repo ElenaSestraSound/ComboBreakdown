@@ -39,10 +39,23 @@ export type Move = {
 
 export interface ICharacterList {
   characters: Character[];
-  moves?: Move[]; 
+  moves?: Move[];
 };
 
 export interface ICharacterPage  {
   searchParams: { [key: string]: string | string[] | undefined; };
   params: { [key: string]: Move | undefined; };
 };
+export type GlossaryItem = {
+  term: string,
+  def: string,
+  altterm?: string[],
+  games?: string[],
+  image?: string[],
+  video?: string[],
+  jp?: string;
+};
+
+export interface IGlossaryListItem {
+  item: GlossaryItem;
+}
