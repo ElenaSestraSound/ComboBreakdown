@@ -54,14 +54,17 @@ export default function DropdownSelector ({ list, title, onChangeSelection, alig
           style={{ "backgroundImage": `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url(${image})` }}
           onClick={() => {
             setMenuShown(prev => !prev);
-          }}>
+          }}
+          data-testid='character-selector'
+        >
           <span
             className='text-3xl font-bold'
           >{selection ? selection.name.toUpperCase() : title}</span>
         </div>
       </Animate>
       {menuShown &&
-        <div className='absolute top-0 w-full h-72 z-30 overflow-x-hidden overflow-y-scroll'>
+        <div className='absolute top-0 w-full h-72 z-30 overflow-x-hidden overflow-y-scroll'
+          data-testid='character-selector-list'>
           {localList.map((character) => <div
             data-index={character.index} //don't move this property from first position
             className={divClass}
