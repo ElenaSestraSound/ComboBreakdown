@@ -78,8 +78,10 @@ export default function Compare () {
         <ResultBox
           firstCharacterName={firstCharacter?.name}
           firstCharacterMove={firstCharacterMove}
+          firstCharacterProperties={firstCharacterMove?.properties}
           secondCharacterName={secondCharacter?.name}
-          secondCharacterMove={secondCharacterMove} />
+          secondCharacterMove={secondCharacterMove}
+          secondCharacterProperties={secondCharacterMove?.properties} />
       </div>
     </>
   );

@@ -60,4 +60,5 @@ export interface IBarMeterProps {
   startup: number,
   active: string,
   recovery: number;
+  properties: string;
 }

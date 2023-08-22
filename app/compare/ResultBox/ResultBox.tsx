@@ -3,15 +3,16 @@ import { BarMeter } from './BarMeter';
 import { useEffect, useState } from 'react';
 import { Move } from './../types';
 
-
 export interface IResultBoxProps {
   firstCharacterName: string | undefined;
   firstCharacterMove: Move | null;
+  firstCharacterProperties: string | undefined;
   secondCharacterName: string | undefined;
   secondCharacterMove: Move | null;
+  secondCharacterProperties: string | undefined;
 }
 
-export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstCharacterName, secondCharacterName }: IResultBoxProps) {
+export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstCharacterName, secondCharacterName, firstCharacterProperties, secondCharacterProperties }: IResultBoxProps) {
   const [winner, setWinner] = useState('DRAW');
 
   useEffect(() => {
@@ -28,17 +29,21 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
       {firstCharacterMove &&
         <div className='mb-3'>
           <BarMeter
+            key={'bar-1'}
             startup={firstCharacterMove.startup}
             active={firstCharacterMove.active}
-            recovery={firstCharacterMove.missRecovery} />
+            recovery={firstCharacterMove.missRecovery}
+            properties={firstCharacterMove.properties} />
         </div>
       }
       {secondCharacterMove &&
         <div className='mb-8'>
           <BarMeter
+            key={'bar-2'}
             startup={secondCharacterMove.startup}
             active={secondCharacterMove.active}
-            recovery={secondCharacterMove.missRecovery} />
+            recovery={secondCharacterMove.missRecovery}
+            properties={secondCharacterMove.properties} />
         </div>
       }
       {firstCharacterMove && secondCharacterMove &&

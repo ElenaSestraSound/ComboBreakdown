@@ -1,4 +1,4 @@
-export const barLength = 50;
+export const barLength = 65;
 export const ticksArray = [...Array(barLength + 1).keys()];
 
 export const barColors = {

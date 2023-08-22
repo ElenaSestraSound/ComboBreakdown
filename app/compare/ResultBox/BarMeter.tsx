@@ -3,23 +3,26 @@ import { IBarMeterProps } from '@/utils/types';
 import { v4 as uuid } from 'uuid';
 import * as utils from './BarUtils';
 
-export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
+export function BarMeter ({ startup, active, recovery, properties }: IBarMeterProps) {
   const startupVal = startup ?? 0;
   const parsedActive = utils.parseActive(active);
   const activeDuration = utils.getActiveDuration(active);
   const isMultiActive = Array.isArray(parsedActive) ? true : false;
   const activeLast = Array.isArray(parsedActive) ? parsedActive[parsedActive.length - 1] : utils.getActiveValue(active);
-  const activeVal = activeLast - startupVal;
+  const activeVal = activeLast > 0 ? (activeLast - startupVal) : 0;
   const activeLabels = utils.parseActiveValue(active);
   const recoveryVal = utils.getRecoveryValue(recovery, activeLast);
+  const isProjectile = properties.toLowerCase().includes('projectile') ? true : false;
+  const projectileVal = recoveryVal / 2;
   const max = utils.barLength - startupVal - activeVal - recoveryVal;
 
   const recoveryFill = (startupVal + activeVal > 0) ? utils.barColors.recoveryFill : utils.barColors.startupFill;
   const activeFill = isMultiActive ? utils.barColors.multiActiveFill : utils.barColors.activeFill;
+  const projectileFill = utils.barColors.multiActiveFill;
 
   const xTicks = [
     startupVal > 0 ? startupVal : '-',
-    startupVal + activeVal,
+    activeVal > 0 ? startupVal + activeVal : '-',
     startupVal + activeVal + recoveryVal
   ];
 
@@ -27,6 +30,8 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
     Startup: startupVal,
     Active: activeVal,
     ActiveLabel: activeDuration,
+    Projectile: projectileVal,
+    ProjectileRecovery: projectileVal,
     Recovery: recoveryVal,
     Max: max,
   }];
@@ -62,11 +67,28 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
           <Bar dataKey="Active"
             stackId="a"
             fill={activeFill}>
-            <LabelList dataKey="ActiveLabel" position="insideRight" fill="#ddd" fontSize="12" />
+            {(activeVal > 0) && (
+              <LabelList dataKey="ActiveLabel" position="insideRight" fill="#ddd" fontSize="12" />
+            )}
           </Bar>
-          <Bar dataKey="Recovery" stackId="a" fill={recoveryFill}>
-            <LabelList dataKey="Recovery" position="insideRight" fill="#ddd" fontSize="12" />
-          </Bar>
+          {isProjectile && (<>
+            <Bar dataKey="Projectile"
+              stackId="a"
+              fill={projectileFill}>
+              <LabelList dataKey="Projectile" position="insideRight" fill="#ddd" fontSize="12" />
+            </Bar>
+            <Bar dataKey="ProjectileRecovery" stackId="a" fill={recoveryFill}>
+              <LabelList dataKey="Projectile" position="insideRight" fill="#ddd" fontSize="12" />
+            </Bar>
+          </>
+          )}
+          {!isProjectile && (<>
+            <Bar dataKey="Recovery" stackId="a" fill={recoveryFill}>
+              {(recoveryVal > 0) && (
+                <LabelList dataKey="Recovery" position="insideRight" fill="#ddd" fontSize="12" />
+              )}
+            </Bar>
+          </>)}
           <Bar dataKey="Max" stackId="a" fill={utils.barColors.emptyFill} />
           {utils.ticksArray.map(tick => {
             return (
@@ -79,7 +101,7 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
                 key={uuid()}
                 x={tick - 1}
                 stroke={utils.barColors.activeFill}
-                strokeWidth={27} isFront>
+                strokeWidth={25} isFront>
                 <Label position="insideRight" fill="#ddd" fontSize="12">{activeLabels[index]}</Label>
               </ReferenceLine>
             );
