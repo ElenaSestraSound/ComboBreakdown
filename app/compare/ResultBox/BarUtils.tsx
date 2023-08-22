@@ -1,4 +1,5 @@
-export const ticksArray = [...Array(101).keys()];
+export const barLength = 50;
+export const ticksArray = [...Array(barLength + 1).keys()];
 
 export const barColors = {
   strokeColor: '#000000',
@@ -37,6 +38,31 @@ export function getActiveValue (activeStr: string) {
   let res = 0;
   if (activeStr.includes('-')) {
     res = parseInt(activeStr.split('-')[1]);
+  } else {
+    res = parseInt(activeStr);
+  }
+  return res;
+}
+
+export function parseActiveValue (activeStr: string) {
+  const resArr: number[] = [];
+  if (activeStr.includes(',')) {
+    const activeTemp = activeStr.split(',');
+    activeTemp.map((tmpStr) => {
+      if (tmpStr.includes('-')) {
+        resArr.push(getActiveDuration(tmpStr));
+      } else {
+        resArr.push(1);
+      }
+    });
+  }
+  return resArr;
+}
+
+export function getActiveDuration (activeStr: string) {
+  let res = 0;
+  if (activeStr.includes('-')) {
+    res = parseInt(activeStr.split('-')[1]) - parseInt(activeStr.split('-')[0]);
   } else {
     res = parseInt(activeStr);
   }
