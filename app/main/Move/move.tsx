@@ -2,7 +2,16 @@
 
 export default function MoveElem(params:any) {
   const move = params.move;
+  let first: string = '';
+  let second: string = '';
   if (!move) return 'I aint got no moves man!';
+
+  if (move.classic) {
+    first = move.classic[1];
+    second = move.classic[0];
+    first ? first = first.toLowerCase() : first;
+    second ? second = second.toLowerCase() : second;
+  }
 
   return (
     <li key={move.id}>
@@ -13,14 +22,14 @@ export default function MoveElem(params:any) {
         ></div>
         <div className="text-center pl-3">
           <p>{move.name}</p>
-          <div className="flex px-5 py-1">
+          <div className="flex px-5 py-1 items-center">
             <span>
               <div
                 className="h-6 w-6 z-10 bg-cover"
-                style={{ backgroundImage: `url("/moveBtn/icon_${move.classic[1] + move.classic[0]}.png")` }}
+                style={{ backgroundImage: `url("/moveBtn/icon_${first + second}.png")` }}
               />
             </span>
-            <span className="px-2">{move.classic[0]}</span>
+            <p className="px-2 text-xs">{move.classic[0]}</p>
           </div>
         </div>
       </div>
