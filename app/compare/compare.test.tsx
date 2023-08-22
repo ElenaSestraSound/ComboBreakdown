@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import Compare from './Compare';
-import { characters } from './mocks/mockCharacters';
+import { characters } from './__mocks__/characters.mock';
 
 describe('Compare', () => {
   it('should render 2 character selectors', async () => {
