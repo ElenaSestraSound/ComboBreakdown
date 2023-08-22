@@ -55,3 +55,9 @@ export type GlossaryItem = {
 export interface IGlossaryListItem {
   item: GlossaryItem;
 }
+
+export interface IBarMeterProps {
+  startup: number,
+  active: string,
+  recovery: number;
+}

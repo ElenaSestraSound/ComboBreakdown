@@ -1,31 +1,30 @@
 import { BarChart, Bar, ReferenceLine, XAxis, YAxis, ResponsiveContainer } from 'recharts';
-export interface IBarMeterProps {
-  startup: number,
-  active: string,
-  recovery: number;
-}
+import { IBarMeterProps } from '@/utils/types';
+import * as utils from './BarUtils';
 
 export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
   const startupVal = startup ?? 0;
-  const activeLast = getActiveValue(active);
+  const parsedActive = utils.parseActive(active);
+  const isMultiActive = Array.isArray(parsedActive) ? true : false;
+  const activeLast = Array.isArray(parsedActive) ? parsedActive[parsedActive.length - 1] : utils.getActiveValue(active);
   const activeVal = activeLast - startupVal;
-  const recoveryTemp = recovery ?? 0;
-  const recoveryVal = recoveryTemp - activeLast;
+  const recoveryVal = utils.getRecoveryValue(recovery, activeLast);
   const max = 100 - startupVal - activeVal - recoveryVal;
-  const ticksArray = [...Array(101).keys()];
 
-  const strokeColor = '#000000';
-  const startupFill = '#0AB48C';
-  const activeFill = '#D71E5A';
-  const recoveryFill = (startupVal + activeVal > 0) ? '#0A57C1' : startupFill;
-  const emptyFill = '#333333';
+  const recoveryFill = (startupVal + activeVal > 0) ? utils.barColors.recoveryFill : utils.barColors.startupFill;
+  const activeFill = isMultiActive ? utils.barColors.multiActiveFill : utils.barColors.activeFill;
+
+  const xTicks = [
+    startupVal > 0 ? startupVal : '-',
+    startupVal + activeVal,
+    startupVal + activeVal + recoveryVal
+  ];
 
   const data = [{
     Startup: startupVal,
     Active: activeVal,
     Recovery: recoveryVal,
     Max: max,
-    TicksArr: ticksArray
   }];
 
   return (
@@ -34,22 +33,17 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
         <BarChart
           data={data}
           layout='vertical'
-          margin={{
-            top: -7,
-            right: 0,
-            left: -60,
-            bottom: 0,
-          }}
+          margin={utils.barMargin}
         >
           <XAxis
             height={20}
             type="number"
             id="x"
-            ticks={[startupVal > 0 ? startupVal : '-', startupVal + activeVal, startupVal + activeVal + recoveryVal]}
+            ticks={xTicks}
             tick={{ fill: '#ddd' }}
             tickSize={6}
             minTickGap={1}
-            axisLine={{ stroke: strokeColor }}
+            axisLine={{ stroke: utils.barColors.strokeColor }}
             tickLine={{ stroke: '#444' }}
             tickMargin={2}
             domain={[0, 100]}
@@ -59,27 +53,29 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
             }}
           />
           <YAxis type="category" dataKey="1" padding={{ top: 0, bottom: -6 }} />
-          <Bar dataKey="Startup" stackId="a" fill={startupFill} />
+          <Bar dataKey="Startup" stackId="a" fill={utils.barColors.startupFill} />
           <Bar dataKey="Active" stackId="a" fill={activeFill} />
           <Bar dataKey="Recovery" stackId="a" fill={recoveryFill} />
-          <Bar dataKey="Max" stackId="a" fill={emptyFill} />
-          {ticksArray.map(tick => {
+          <Bar dataKey="Max" stackId="a" fill={utils.barColors.emptyFill} />
+          {utils.ticksArray.map(tick => {
             return (
-              <ReferenceLine key={tick} x={tick} stroke={strokeColor} strokeWidth={2} isFront />
+              <ReferenceLine key={tick} x={tick} stroke={utils.barColors.strokeColor} strokeWidth={2} isFront />
+            );
+          })}
+          {Array.isArray(parsedActive) && parsedActive.map(tick => {
+            return (
+              <ReferenceLine
+                label={
+                  { value: tick, dy: 5, dx: 0, fill: '#ddd', fontSize: 12 }
+                }
+                key={tick}
+                x={tick - 1}
+                stroke={utils.barColors.activeFill}
+                strokeWidth={13} isFront />
             );
           })}
         </BarChart>
       </ResponsiveContainer>
-    </div >
+    </div>
   );
-}
-
-function getActiveValue (activeStr: string) {
-  let res = 0;
-  if (activeStr.includes('-')) {
-    res = parseInt(activeStr.split('-')[1]);
-  } else {
-    res = parseInt(activeStr);
-  }
-  return res;
 }
