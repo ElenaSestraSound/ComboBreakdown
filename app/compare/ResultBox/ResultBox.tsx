@@ -26,7 +26,7 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
   return (
     <>
       {firstCharacterMove &&
-        <div className='mb-4'>
+        <div className='mb-3'>
           <BarMeter
             startup={firstCharacterMove.startup}
             active={firstCharacterMove.active}
@@ -34,7 +34,7 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
         </div>
       }
       {secondCharacterMove &&
-        <div className='mb-6'>
+        <div className='mb-8'>
           <BarMeter
             startup={secondCharacterMove.startup}
             active={secondCharacterMove.active}

@@ -6,15 +6,22 @@ export interface IBarMeterProps {
 }
 
 export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
-  const activeLast = parseInt(active.split('-')[1]);
-  const activeVal = activeLast - startup;
-  const recoveryVal = recovery - activeLast;
-  const max = 100 - startup - activeVal - recoveryVal;
+  const startupVal = startup ?? 0;
+  const activeLast = getActiveValue(active);
+  const activeVal = activeLast - startupVal;
+  const recoveryTemp = recovery ?? 0;
+  const recoveryVal = recoveryTemp - activeLast;
+  const max = 100 - startupVal - activeVal - recoveryVal;
   const ticksArray = [...Array(101).keys()];
+
   const strokeColor = '#000000';
+  const startupFill = '#0AB48C';
+  const activeFill = '#D71E5A';
+  const recoveryFill = (startupVal + activeVal > 0) ? '#0A57C1' : startupFill;
+  const emptyFill = '#333333';
 
   const data = [{
-    Startup: startup,
+    Startup: startupVal,
     Active: activeVal,
     Recovery: recoveryVal,
     Max: max,
@@ -22,8 +29,8 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
   }];
 
   return (
-    <div className='w-full flex justify-center z-10 mb-8'>
-      <ResponsiveContainer width="100%" height={70}>
+    <div className='w-full flex justify-center z-10 mb-3'>
+      <ResponsiveContainer width="100%" height={60}>
         <BarChart
           data={data}
           layout='vertical'
@@ -38,12 +45,12 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
             height={20}
             type="number"
             id="x"
-            ticks={[startup, startup + activeVal, startup + activeVal + recoveryVal, 100]}
+            ticks={[startupVal > 0 ? startupVal : '-', startupVal + activeVal, startupVal + activeVal + recoveryVal]}
             tick={{ fill: '#ddd' }}
             tickSize={6}
             minTickGap={1}
             axisLine={{ stroke: strokeColor }}
-            tickLine={{ stroke: '#6a6a6a' }}
+            tickLine={{ stroke: '#444' }}
             tickMargin={2}
             domain={[0, 100]}
             padding={{ left: 1, right: 2 }}
@@ -52,10 +59,10 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
             }}
           />
           <YAxis type="category" dataKey="1" padding={{ top: 0, bottom: -6 }} />
-          <Bar dataKey="Startup" stackId="a" fill="#33ee44" />
-          <Bar dataKey="Active" stackId="a" fill="#ee3344" />
-          <Bar dataKey="Recovery" stackId="a" fill="#3333de" />
-          <Bar dataKey="Max" stackId="a" fill="#333333" />
+          <Bar dataKey="Startup" stackId="a" fill={startupFill} />
+          <Bar dataKey="Active" stackId="a" fill={activeFill} />
+          <Bar dataKey="Recovery" stackId="a" fill={recoveryFill} />
+          <Bar dataKey="Max" stackId="a" fill={emptyFill} />
           {ticksArray.map(tick => {
             return (
               <ReferenceLine key={tick} x={tick} stroke={strokeColor} strokeWidth={2} isFront />
@@ -63,6 +70,16 @@ export function BarMeter ({ startup, active, recovery }: IBarMeterProps) {
           })}
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </div >
   );
+}
+
+function getActiveValue (activeStr: string) {
+  let res = 0;
+  if (activeStr.includes('-')) {
+    res = parseInt(activeStr.split('-')[1]);
+  } else {
+    res = parseInt(activeStr);
+  }
+  return res;
 }
