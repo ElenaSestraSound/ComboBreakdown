@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import NavBar from '../header/header-nav';
+import NavBar from './header-nav';
 
 let path = '/';
 jest.mock('next/navigation', () => ({
