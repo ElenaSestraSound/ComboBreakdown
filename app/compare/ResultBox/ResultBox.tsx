@@ -16,29 +16,32 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
 
   useEffect(() => {
     if (firstCharacterMove && secondCharacterMove) {
-      const difference = firstCharacterMove.startup - secondCharacterMove.startup;
-      if (difference < 0) return setWinner(firstCharacterName! + ' wins!');
-      if (difference > 0) return setWinner(secondCharacterName! + ' wins!');
-      if (difference === 0) return setWinner('DRAW');
+      if (firstCharacterMove.frameData.startup && secondCharacterMove.frameData.startup) {
+        const difference = firstCharacterMove.frameData.startup - secondCharacterMove.frameData.startup;
+        if (difference < 0) return setWinner(firstCharacterName! + ' wins!');
+        if (difference > 0) return setWinner(secondCharacterName! + ' wins!');
+        if (difference === 0) return setWinner('DRAW');
+      }
     }
   }, [firstCharacterMove, firstCharacterName, secondCharacterMove, secondCharacterName]);
 
   return (
     <>
+      {/* TODO Remove exclamation marks when merge the new BarMeter */}
       {firstCharacterMove &&
         <div className='mb-4'>
           <BarMeter
-            startup={firstCharacterMove.startup}
-            active={firstCharacterMove.active}
-            recovery={firstCharacterMove.missRecovery} />
+            startup={firstCharacterMove.frameData.startup!}
+            active={firstCharacterMove.frameData.active!}
+            recovery={firstCharacterMove.frameData.missRecovery!} />
         </div>
       }
       {secondCharacterMove &&
         <div className='mb-6'>
           <BarMeter
-            startup={secondCharacterMove.startup}
-            active={secondCharacterMove.active}
-            recovery={secondCharacterMove.missRecovery} />
+            startup={secondCharacterMove.frameData.startup!}
+            active={secondCharacterMove.frameData.active!}
+            recovery={secondCharacterMove.frameData.missRecovery!} />
         </div>
       }
       {firstCharacterMove && secondCharacterMove &&

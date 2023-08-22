@@ -1,6 +1,4 @@
-import { Character } from "./types";
-
-export const characters: Character[] = [
+export const characters = [
   {
     name: "Luke",
     bio: "A contractor for a PMC, Luke uses his elite military background to teach mixed martial arts. His days off are spent eating junk food, playing video games, and fighting, but make no mistake—Luke plays to win.",
