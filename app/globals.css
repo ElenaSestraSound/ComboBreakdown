@@ -81,7 +81,7 @@ header nav .active:hover {
 }
 
 .control-select button {
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 2.5rem;
   border: 1px solid transparent;
 }
 .control-select .active {
