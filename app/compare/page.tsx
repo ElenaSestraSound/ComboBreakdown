@@ -22,6 +22,7 @@ const characterMapper = (characters: any): Character[] => {
 
 const movesMapper = (moves: any): Move[] => {
   return moves.map((move: any) => {
+    if (move.type === 'default' || move.type === 'super' || move.type === 'common') return;
     return {
       name: move.name,
       type: move.type,
