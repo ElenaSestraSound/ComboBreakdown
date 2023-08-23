@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Oswald } from 'next/font/google';
 import Header from "./header/header";
+// import { ControllerProvider } from './contextProvider';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -20,9 +21,9 @@ export default function RootLayout ({
       <body className={oswald.className} data-testid="cbd">
         <div className="h-full grid grid-rows-[auto_1fr]">
           <Header />
-          <main>
-            {children}
-          </main>
+          {/* <ControllerProvider > */}
+          <main>{children} </main>
+          {/* </ControllerProvider> */}
         </div>
       </body>
     </html>

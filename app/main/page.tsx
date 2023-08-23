@@ -1,10 +1,7 @@
-import { use } from 'react';
+import { use, createContext, useState } from 'react';
 import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image'
 import Link from 'next/link'
-
-// Classic / Modern 
-// XBox / Capcom / PlatStation 
 
 export default function Main () {
   const characters = use(getCharacters());
@@ -15,19 +12,19 @@ export default function Main () {
             <ul className="flex m-auto w-4/5 flex-wrap justify-center">
               {characters.map((character) => (
                 <li key={character.name} >
-                  <Link href={{pathname:`/[${character.name}].tsx`, query: { charName: character.name}}}>
-                  <Image src={`/character/${character.name}.png`}
-                    height={144}
-                    width={144}
-                    alt="Character-Image"
-                    className="w-auto mb-4 rounded shadow-md"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </>
-  );
-}
+                  <Link href={{ pathname: `/[${character.name}].tsx`, query: { charName: character.name }}}>
+                    <Image src={`/character/${character.name}.png`}
+                      height={144}
+                      width={144}
+                      alt="Character-Image"
+                      className="w-auto mb-4 rounded shadow-md"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </>
+    );
+  }

@@ -8,7 +8,12 @@ export default function ComparePage () {
   const data: any = use(getCharacters());
   const characters = characterMapper(data);
 
-  return (<> {data ? <Compare characters={characters} /> : <NotFound />}</>);
+  return (
+    <>
+      {data ?
+        <Compare characters={characters} /> :
+        <NotFound />}
+    </>);
 }
 
 const characterMapper = (characters: any): Character[] => {

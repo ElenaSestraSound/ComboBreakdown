@@ -1,59 +1,43 @@
+'use client';
 
+import { useState } from 'react';
+import Elem from './elem';
 
 export default function MoveElem(params: any) {
-  const move = params.move;
-  const prefix = params.prefix;
-  const btnUrls: string[] = [];
-
-  if (!move) {
-    return 'I aint got no moves man!';
-  } else if (move.type === 'normal') {
-    return;
-  } else if (move.classic === 'NO INPUT' || move.classic === 'default') {
-    // btnUrls.push('blank');
-    return;
-  } else {
-    let curr = move.classic;
-    curr = curr.toLowerCase();
-    for (let i = 0; i < curr.length; i++) {
-      let temp = curr[i];
-      if (temp === 'l' || temp === 'm' || temp === 'h') {
-        btnUrls.push(curr[i + 1] + curr[i]);
-        i++;
-      } else if (temp === '|') {
-        btnUrls.push('or');
-      } else if (temp === '+') {
-        btnUrls.push('plus');
-      } else if (temp === '_') {
-        btnUrls.push('a');
-      } else {
-        btnUrls.push(temp);
-      }
-    }
-    // console.log(btnUrls);
-  }
-
+  const { char } = params;
+  const [controlGen, setControlGen] = useState('classic');
+  const [controlMake, setControlMake] = useState('cap');
+  const movesObj = char[0].moves;
+  
   return (
-    <li key={move.id}>
-      <div className="flex w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
-        <div
-          style={{ backgroundImage: `url("/moves/101.jpg")` }}
-          className="h-10 w-16 bg-cover bg-center rounded shadow-md"
-        ></div>
-        <div className="text-center pl-3">
-          <p>{move.name}</p>
-          <div className="flex px-5 py-1 items-center">
-            {btnUrls &&
-              btnUrls.map((bUrl, index) => (
-                <span
-                  key={move.id.toString() + index}
-                  className="h-6 w-6 z-10 bg-cover flex"
-                  style={{ backgroundImage: `url('/moveBtn/icon_${prefix}${bUrl}.png')` }}>
-                </span>
-              ))}
-          </div>
-        </div>
+    <div>
+      <div className="platform-select flex w-96 items-center justify-around bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+        <button className={controlMake === 'xbox' ? 'active' : '' } type="button" onClick={() => setControlMake('xbox')}>Xbox</button>
+        <button className={controlMake === 'play' ? 'active' : '' } type="button" onClick={() => setControlMake('play')}>Playstation</button>
+        <button className={controlMake === 'cap' ? 'active' : '' } type="button" onClick={() => setControlMake('cap')}>
+          Capcom
+        </button>
       </div>
-    </li>
-  )
+      <div className="control-select flex w-96 items-center justify-around bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+        <button title="Classic" className={controlGen === 'classic' ? 'active' : '' } type="button" onClick={() => setControlGen('classic')}><img className="h-9" src="\movebtn\logo-classic.png"/></button>
+        <button title="Modern" className={controlGen === 'modern' ? 'active' : '' } type="button" onClick={() => setControlGen('modern')}><img className="h-9" src="\movebtn\logo-modern.png"/></button>    
+      </div>
+      <div>
+       <ul>
+        {
+          movesObj &&
+          movesObj.map((move: any) => (
+            <li key={move.id}>
+              <Elem
+              move={move}
+              controlGen={controlGen}
+              controlMake={controlMake}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>    
+)
 }
