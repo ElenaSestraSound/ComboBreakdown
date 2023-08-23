@@ -9,6 +9,7 @@ export type Move = {
   damage?: number,
   scaling?: string;
   frameData: FrameData;
+  properties?: string;
 };
 
 export type FrameData = {
