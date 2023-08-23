@@ -3,6 +3,9 @@ import { getCharacters } from '@/utils/get-characters';
 import Image from 'next/image'
 import Link from 'next/link'
 
+// Classic / Modern 
+// XBox / Capcom / PlatStation 
+
 export default function Main () {
   const characters = use(getCharacters());
   return (

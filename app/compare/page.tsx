@@ -1,97 +1,46 @@
 "use client";
-import { useState } from 'react';
-import { characters } from './mockCharacters';
-import { Character, Move } from './types';
-import DropdownSelector from './DropdownSelector/DropdownSelector';
-import DropdownCharacterSelector from './DropdownSelector/DropdownCharacterSelector';
-import { ResultBox } from './ResultBox/ResultBox';
-import Image from 'next/image';
-import { DynamicBackground } from './DynamicBackground/DynamicBackground';
+import { getCharacters } from "@/utils/get-characters";
+import Compare from "./Compare";
+import { use } from 'react';
+import { Character, Move } from "./types";
+import NotFound from "../not-found";
 
-export default function Compare () {
-  const characterList = listToPairs(characters);
-  const [firstCharacter, setFirstCharacter] = useState<Character | null>(null);
-  const [firstCharacterMove, setFirstCharacterMove] = useState<Move | null>(null);
-  const [secondCharacter, setSecondCharacter] = useState<Character | null>(null);
-  const [secondCharacterMove, setSecondCharacterMove] = useState<Move | null>(null);
+export default function ComparePage () {
+  const data: any = use(getCharacters());
+  const characters = characterMapper(data);
 
-  const onSelectFirstCharacterMove = (index: number) => {
-    setFirstCharacterMove(firstCharacter!.moves![index]);
-  };
-
-  const onSelectFirstCharacter = (index: number) => {
-    setFirstCharacter(characters[index]);
-    setFirstCharacterMove(null);
-  };
-
-  const onSelectSecondCharacterMove = (index: number) => {
-    setSecondCharacterMove(secondCharacter!.moves![index]);
-  };
-
-  const onSelectSecondCharacter = (index: number) => {
-    setSecondCharacter(characters[index]);
-    setSecondCharacterMove(null);
-  };
-
-  return (
-    <>
-      <DynamicBackground left={firstCharacter?.name} right={secondCharacter?.name} />
-      <div className='max-w-4xl mx-auto py-20 px-10 md:px-20'>
-        <div className='block basis-1/3 mb-8 md:flex'>
-          <div className='w-full'>
-            <div className='mb-4'>
-              <DropdownCharacterSelector
-                list={characterList}
-                title={'SELECT A CHARACTER'}
-                onChangeSelection={onSelectFirstCharacter} />
-            </div>
-            {firstCharacter &&
-              <DropdownSelector
-                // by adding this key the component knows that the caracter selection
-                // has changed and it resets to its default value
-                key={firstCharacter.name}
-                list={listToPairs(firstCharacter.moves!)}
-                title={'SELECT MOVE'}
-                onChangeSelection={onSelectFirstCharacterMove} />}
-          </div>
-          <div className='w-1/2 mx-auto md:w-full z-10 m-w-min'>
-            <Image src={'/common/vs.png'} alt={'An image of VS letters'} layout='responsive' width={100} height={100} />
-          </div>
-          <div className='w-full'>
-            <div className='mb-4'>
-              <DropdownCharacterSelector
-                list={characterList}
-                title={'SELECT A CHARACTER'}
-                onChangeSelection={onSelectSecondCharacter}
-                alignRight={true} />
-            </div>
-            {secondCharacter &&
-              <DropdownSelector
-                // by adding this key the component knows that the caracter selection
-                // has changed and it resets to its default value
-                key={secondCharacter.name}
-                list={listToPairs(secondCharacter.moves!)}
-                title={'SELECT MOVE'}
-                onChangeSelection={onSelectSecondCharacterMove} />}
-          </div>
-        </div>
-        <ResultBox
-          firstCharacterName={firstCharacter?.name}
-          firstCharacterMove={firstCharacterMove}
-          firstCharacterProperties={firstCharacterMove?.properties}
-          secondCharacterName={secondCharacter?.name}
-          secondCharacterMove={secondCharacterMove}
-          secondCharacterProperties={secondCharacterMove?.properties} />
-      </div>
-    </>
-  );
+  return (<> {data ? <Compare characters={characters} /> : <NotFound />}</>);
 }
 
-const listToPairs = (list: any[]) => {
-  return list.map((elem, index) => {
+const characterMapper = (characters: any): Character[] => {
+  return characters.map((character: any) => {
     return {
-      name: elem.name as string,
-      index
+      name: character.name,
+      moves: movesMapper(character.moves)
+    } as Character;
+  });
+};
+
+const movesMapper = (moves: any): Move[] => {
+  return moves.map((move: any) => {
+    return {
+      name: move.name,
+      type: move.type,
+      cancelable: nullable(move.cancelable),
+      damage: nullable(move.damage),
+      scaling: nullable(move.scaling),
+      frameData: {
+        startup: nullable(move.startup),
+        active: nullable(move.active),
+        missRecovery: nullable(move.missRecovery),
+        hitStunRecovery: nullable(move.hitStunRecovery),
+        blockStunRecovery: nullable(move.blockStunRecovery)
+      }
     };
   });
 };
+
+const nullable = (property: any) => {
+  return property === null ? undefined : property;
+}
+
