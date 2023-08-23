@@ -38,9 +38,9 @@ export function BarMeter ({ startup, active, recovery, properties }: IBarMeterPr
   }];
 
   return (
-    <div className='w-full flex justify-center z-10 mb-3'>
+    <div className='w-full flex justify-center z-10 mb-3' aria-controls="graph" aria-labelledby="character framedata bar" aria-orientation="vertical">
       <ResponsiveContainer width="100%" height={60}>
-        <BarChart data={data} key={uuid()} layout='vertical' margin={utils.barMargin}>
+        <BarChart data={data} key={uuid()} layout='vertical' margin={utils.barMargin} title="Frame Data Bar">
           <XAxis height={20} type="number" id="x" ticks={xTicks} tick={{ fill: '#ddd' }}
             tickSize={6} minTickGap={1} axisLine={{ stroke: utils.barColors.strokeColor }}
             tickLine={{ stroke: '#444' }} tickMargin={2} domain={[0, utils.barLength]}
