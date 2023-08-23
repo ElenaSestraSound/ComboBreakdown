@@ -35,6 +35,7 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
   useEffect(() => {
     if (selection) {
       onChangeSelection(selection.index);
+      setFilter('');
     }
   }, [selection]);
 
