@@ -19,7 +19,7 @@ export const barMargin = {
 
 export function parseActive (activeStr: string) {
   let res = 0;
-  if (activeStr.includes(',')) {
+  if (activeStr && activeStr.includes(',')) {
     const resArr: number[] = [];
     const activeTemp = activeStr.split(',');
     activeTemp.map((tmpStr) => {
@@ -36,7 +36,7 @@ export function parseActive (activeStr: string) {
 
 export function getActiveValue (activeStr: string) {
   let res = 0;
-  if (activeStr.includes('-')) {
+  if (activeStr && activeStr.includes('-')) {
     res = parseInt(activeStr.split('-')[1]);
   } else {
     res = parseInt(activeStr);
@@ -46,7 +46,7 @@ export function getActiveValue (activeStr: string) {
 
 export function parseActiveValue (activeStr: string) {
   const resArr: number[] = [];
-  if (activeStr.includes(',')) {
+  if (activeStr && activeStr.includes(',')) {
     const activeTemp = activeStr.split(',');
     activeTemp.map((tmpStr) => {
       if (tmpStr.includes('-')) {
@@ -61,15 +61,17 @@ export function parseActiveValue (activeStr: string) {
 
 export function getActiveDuration (activeStr: string) {
   let res = 0;
-  if (activeStr.includes('-')) {
+  if (activeStr && activeStr.includes('-')) {
     res = parseInt(activeStr.split('-')[1]) - parseInt(activeStr.split('-')[0]);
   } else {
     res = parseInt(activeStr);
+    res = Number.isInteger(res) ? res : 0;
   }
   return res;
 }
 
 export function getRecoveryValue (recovery: number | undefined, activeLast: number) {
   const recoveryTemp = (recovery && recovery) ?? 0;
-  return (recoveryTemp - activeLast);
+  const recoveryCalc = recoveryTemp > 0 ? recoveryTemp - activeLast : 0;
+  return (recoveryCalc);
 }

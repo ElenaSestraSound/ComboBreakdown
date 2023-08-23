@@ -1,4 +1,3 @@
-"use client";
 import { getCharacters } from "@/utils/get-characters";
 import Compare from "./Compare";
 import { use } from 'react';

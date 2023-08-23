@@ -12,7 +12,7 @@ export function BarMeter ({ startup, active, recovery, properties }: IBarMeterPr
   const activeVal = activeLast > 0 ? (activeLast - startupVal) : 0;
   const activeLabels = utils.parseActiveValue(active);
   const recoveryVal = utils.getRecoveryValue(recovery, activeLast);
-  const isProjectile = properties.toLowerCase().includes('projectile') ? true : false;
+  const isProjectile = properties && properties.toLowerCase().includes('projectile') ? true : false;
   const projectileVal = Math.floor(recoveryVal / 2);
   const projectileRecoveryVal = Math.ceil(recoveryVal / 2);
   const max = utils.barLength - startupVal - activeVal - recoveryVal;

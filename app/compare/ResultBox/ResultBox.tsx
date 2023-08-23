@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BarMeter } from './BarMeter';
 import { useEffect, useState } from 'react';
 import { Move } from './../types';
@@ -36,18 +35,18 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
             startup={firstCharacterMove.frameData.startup!}
             active={firstCharacterMove.frameData.active!}
             recovery={firstCharacterMove.frameData.missRecovery!}
-            properties={firstCharacterMove.properties}
-            />
+            properties={firstCharacterProperties}
+          />
         </div>
       }
       {secondCharacterMove &&
         <div className='mb-8'>
           <BarMeter
-startup={secondCharacterMove.frameData.startup!}
-active={secondCharacterMove.frameData.active!}
-recovery={secondCharacterMove.frameData.missRecovery!}
-properties={secondCharacterMove.properties}
-/>
+            startup={secondCharacterMove.frameData.startup!}
+            active={secondCharacterMove.frameData.active!}
+            recovery={secondCharacterMove.frameData.missRecovery!}
+            properties={secondCharacterProperties}
+          />
         </div>
       }
       {firstCharacterMove && secondCharacterMove &&
