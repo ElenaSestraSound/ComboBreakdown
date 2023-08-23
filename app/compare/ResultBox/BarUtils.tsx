@@ -72,6 +72,6 @@ export function getActiveDuration (activeStr: string) {
 
 export function getRecoveryValue (recovery: number | undefined, activeLast: number) {
   const recoveryTemp = (recovery && recovery) ?? 0;
-  const recoveryCalc = recoveryTemp > 0 ? recoveryTemp - activeLast : 0;
+  const recoveryCalc = recoveryTemp - activeLast > 0 ? recoveryTemp - activeLast : 0;
   return (recoveryCalc);
 }

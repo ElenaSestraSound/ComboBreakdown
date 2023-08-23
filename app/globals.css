@@ -159,5 +159,5 @@ details[open] p {
 }
 
 .recharts-reference-line .recharts-label {
-  transform: translateY(5px) translateX(-10px);
+  transform: translateY(5px) translateX(4px);
 }

@@ -24,7 +24,7 @@ export function BarMeter ({ startup, active, recovery, properties }: IBarMeterPr
   const xTicks = [
     startupVal > 0 ? startupVal : '-',
     activeVal > 0 ? startupVal + activeVal : '-',
-    startupVal + activeVal + recoveryVal
+    recoveryVal > 0 ? startupVal + activeVal + recoveryVal : '-'
   ];
 
   const data = [{
@@ -62,7 +62,7 @@ export function BarMeter ({ startup, active, recovery, properties }: IBarMeterPr
             </Bar>
           </>
           )}
-          {!isProjectile && (
+          {!isProjectile && (recoveryVal > 0) && (
             <Bar dataKey="Recovery" stackId="a" fill={recoveryFill}>
               {(recoveryVal > 0) && (<LabelList dataKey="Recovery" position="insideRight" fill="#ddd" fontSize="12" />)}
             </Bar>
