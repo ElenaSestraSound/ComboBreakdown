@@ -67,6 +67,7 @@ header nav .active:hover {
   cursor: default;
 }
 
+
 .character-page .overlay {
   background: rgba(var(--background-rgb), 0.5);
 }
@@ -167,4 +168,12 @@ details[open] p {
 
 .recharts-responsive-container {
   border-top: 2px solid black;
+}
+
+.recharts-layer .recharts-label-list {
+  transform: translateY(2px) translateX(4px);
+}
+
+.recharts-reference-line .recharts-label {
+  transform: translateY(5px) translateX(4px);
 }

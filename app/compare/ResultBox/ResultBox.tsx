@@ -1,17 +1,17 @@
-import * as React from 'react';
 import { BarMeter } from './BarMeter';
 import { useEffect, useState } from 'react';
 import { Move } from './../types';
 
-
 export interface IResultBoxProps {
   firstCharacterName: string | undefined;
   firstCharacterMove: Move | null;
+  firstCharacterProperties: string | undefined;
   secondCharacterName: string | undefined;
   secondCharacterMove: Move | null;
+  secondCharacterProperties: string | undefined;
 }
 
-export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstCharacterName, secondCharacterName }: IResultBoxProps) {
+export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstCharacterName, secondCharacterName, firstCharacterProperties, secondCharacterProperties }: IResultBoxProps) {
   const [winner, setWinner] = useState('DRAW');
 
   useEffect(() => {
@@ -29,19 +29,24 @@ export function ResultBox ({ firstCharacterMove, secondCharacterMove, firstChara
     <>
       {/* TODO Remove exclamation marks when merge the new BarMeter */}
       {firstCharacterMove &&
-        <div className='mb-4'>
+        <div className='mb-3'>
           <BarMeter
+            key={'bar-1'}
             startup={firstCharacterMove.frameData.startup!}
             active={firstCharacterMove.frameData.active!}
-            recovery={firstCharacterMove.frameData.missRecovery!} />
+            recovery={firstCharacterMove.frameData.missRecovery!}
+            properties={firstCharacterProperties}
+          />
         </div>
       }
       {secondCharacterMove &&
-        <div className='mb-6'>
+        <div className='mb-8'>
           <BarMeter
             startup={secondCharacterMove.frameData.startup!}
             active={secondCharacterMove.frameData.active!}
-            recovery={secondCharacterMove.frameData.missRecovery!} />
+            recovery={secondCharacterMove.frameData.missRecovery!}
+            properties={secondCharacterProperties}
+          />
         </div>
       }
       {firstCharacterMove && secondCharacterMove &&
