@@ -67,9 +67,24 @@ header nav .active:hover {
   cursor: default;
 }
 
+.main-page li {
+  margin-right: -4.5rem;
+}
+
+.main-page li img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .065s ease-in;
+  transition: .065s ease-in;
+}
+
+.main-page li img:hover {
+  -webkit-transform: scale(1.075);
+  transform: scale(1.075);
+  filter: drop-shadow(0 2px 5px rgb(230, 148, 221));
+}
 
 .character-page .overlay {
-
   background: rgba(var(--background-rgb), 0.5);
 }
 
