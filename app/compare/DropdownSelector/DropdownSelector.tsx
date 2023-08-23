@@ -17,7 +17,9 @@ export type IDropdownSelectorProps = {
 export default function DropdownSelector ({ list, title, onChangeSelection }: IDropdownSelectorProps) {
   const [selection, setSelection] = useState<Details | null>(null);
   const [menuShown, setMenuShown] = useState(false);
-  const [localList, reOrderLocalList] = useState<Details[]>(list);
+  const [localList, setLocalList] = useState<Details[]>(list);
+
+  const [filter, setFilter] = useState('');
 
   const onClickHandler = (e: MouseEvent<HTMLElement>) => {
     const targetElement = e.target as HTMLElement;
@@ -27,13 +29,12 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
   };
 
   useEffect(() => {
+    setLocalList(list.filter(element => element.name.toLowerCase().includes(filter.toLowerCase())));
+  }, [filter]);
+
+  useEffect(() => {
     if (selection) {
       onChangeSelection(selection.index);
-      reOrderLocalList(prev => {
-        const newList = prev.filter(elem => elem.name !== selection.name);
-        newList.unshift(selection);
-        return newList;
-      });
     }
   }, [selection]);
 
@@ -42,14 +43,22 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
       <Animate>
         <div
           className='p-2 bg-purple-900 cursor-pointer hover:bg-purple-800 rounded-lg'
-          onClick={() => setMenuShown(prev => !prev)}
+          onClick={() => setMenuShown(true)}
           data-testid='selector'
         >
-          <span>{selection ? selection.name : title}</span>
+          {menuShown ?
+            <input
+              onChange={(e) => setFilter(e.target.value)}
+              value={filter}
+              className='px-2 rounded bg-purple-900 text-white placeholder-white w-full focus-visible:outline-none '
+              type='text'
+              placeholder='Write here...' />
+            : <span>{selection ? selection.name : title}</span>}
+
         </div>
       </Animate>
       {menuShown &&
-        <div className='absolute top-0 w-full h-72 z-10 rounded-lg overflow-x-hidden overflow-y-scroll'
+        <div className='absolute top-[40px] w-full h-72 z-10 rounded-lg overflow-x-hidden overflow-y-auto'
           data-testid="selector-list">
           {localList.map((character) => <div
             data-index={character.index}
