@@ -35,10 +35,10 @@ export default function MoveElem(params: any) {
 
   return (
     <li key={move.id}>
-      <div className="flex max-w-md items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+      <div className="flex w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
         <div
-          style={{ backgroundImage: `url("/moves/403.jpg")` }}
-          className="h-10 bg-cover bg-center rounded shadow-md"
+          style={{ backgroundImage: `url("/moves/101.jpg")` }}
+          className="h-10 w-16 bg-cover bg-center rounded shadow-md"
         ></div>
         <div className="text-center pl-3">
           <p>{move.name}</p>

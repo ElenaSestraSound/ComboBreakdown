@@ -42,12 +42,15 @@ export default function DropdownSelector ({ list, title, onChangeSelection }: ID
       <Animate>
         <div
           className='p-2 bg-purple-900 cursor-pointer hover:bg-purple-800 rounded-lg'
-          onClick={() => setMenuShown(prev => !prev)}>
+          onClick={() => setMenuShown(prev => !prev)}
+          data-testid='selector'
+        >
           <span>{selection ? selection.name : title}</span>
         </div>
       </Animate>
       {menuShown &&
-        <div className='absolute top-0 w-full h-72 z-10 rounded-lg overflow-x-hidden overflow-y-scroll'>
+        <div className='absolute top-0 w-full h-72 z-10 rounded-lg overflow-x-hidden overflow-y-scroll'
+          data-testid="selector-list">
           {localList.map((character) => <div
             data-index={character.index}
             className='block p-2 bg-purple-700 cursor-pointer hover:bg-purple-400'

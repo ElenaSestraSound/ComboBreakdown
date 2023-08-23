@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Glossary from '../glossary/page';
+import Glossary from './page';
 
 describe('Glossary Page', () => {
   it('renders search label', () => {

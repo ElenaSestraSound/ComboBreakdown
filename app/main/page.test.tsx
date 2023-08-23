@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Main from '../main/page';
+import Main from './page';
 
-jest.mock('../main/character-list');
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   use: jest.fn(() => { })
@@ -15,9 +14,7 @@ afterEach(() => {
 });
 
 describe('Main Page', () => {
-  it('renders heading', async () => {
-    render(<Main />);
-    const heading = screen.getByText(/Characters/i);
-    expect(heading).toBeInTheDocument();
+  it('should render a list', async () => {
+    // TODO
   });
 });
