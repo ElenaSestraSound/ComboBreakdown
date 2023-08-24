@@ -1,12 +1,12 @@
 import { Move } from '@/utils/types';
 
 export default function Elem (params: any) {
-  let btnUrls: string[] | undefined = [];
   const { move, controlGen, controlMake } = params;
-  if (!move || move.type === 'normal' || move.type === 'default' ||
-    !Object.hasOwn(move, controlGen) || move[controlGen] === 'NO INPUT' || move[controlGen] === 'default') {
+  if (!(controlGen in move) || !move || move.type === 'normal' || move.type === 'default' || move[controlGen] === 'NO INPUT' || move[controlGen] === 'default') {
     return;
-  } else if (controlGen === 'classic') {
+  }
+  let btnUrls: string[] | undefined | null = [];
+  if (controlGen === 'classic') {
     btnUrls = getClassicUrl(move);
   } else if (controlGen === 'modern') {
     btnUrls = getModernUrl(move);
@@ -32,61 +32,59 @@ export default function Elem (params: any) {
 }
 
 function getModernUrl (move: Move) {
-  let btnUrls: string[] = [];
-  if (move.modern === 'NO INPUT' || move.modern === 'default' || !move.modern) {
-    return;
+  let tempUrls: string[] = [];
+  if ( !('modern' in move) || !move.modern || move.modern === 'NO INPUT' || move.modern === 'default' ) {
+    return null;
   }
   for (let i = 0; i < move.modern.length; i++) {
-    let temp = move.modern[i];
     let tempMove = move.modern;
-    temp = temp.toLowerCase();
     tempMove = tempMove.toLowerCase();
+    let temp = tempMove[i];
     if (temp === '+') {
-      btnUrls.push('plus');
+      tempUrls.push('plus');
     } else if (temp === '|') {
-      btnUrls.push('or');
+      tempUrls.push('or');
     } else if (temp === '*') {
-      btnUrls.push('all');
+      tempUrls.push('all');
     } else if (temp === '_') {
-      btnUrls.push('a');
+      tempUrls.push('a');
     } else if (tempMove.slice(i, i + 4) === 'auto') {
-      btnUrls.push('auto');
+      tempUrls.push('auto');
       i += 4;
     } else if (tempMove.slice(i, i + 2) === 'lc') {
-      btnUrls.push('lc');
+      tempUrls.push('lc');
       i++;
     } else if (temp === 'd' || temp === 's' || temp === 'r') {
-      btnUrls.push(tempMove[i] + tempMove[i + 1]);
+      tempUrls.push(tempMove[i] + tempMove[i + 1]);
       i++;
     } else if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || !isNaN(parseFloat(temp))) {
-      btnUrls.push(temp);
+      tempUrls.push(temp);
     } 
   }
-  return btnUrls;
+  return tempUrls;
 }
 
 function getClassicUrl (move: Move) {
-  let btnUrls: string[] = [];
+  let tempUrls: string[] = [];
+  if (!move.classic || move.classic === 'NO INPUT' || move.classic === 'default') {
+    return null;
+  }
   for (let i = 0; i < move.classic.length; i++) {
-    if (move.classic === 'NO INPUT' || move.classic === 'default') {
-      return;
-    }
-    let temp = move.classic[i];
-    temp = temp.toLowerCase();
+    let tempMove = move.classic;
+    tempMove = tempMove.toLowerCase();
+    let temp = tempMove[i];
     if (temp === 'l' || temp === 'm' || temp === 'h') {
-      btnUrls.push(move.classic[i + 1] + move.classic[i]);
+      tempUrls.push(tempMove[i + 1] + tempMove[i]);
       i++;
     } else if (temp === '|') {
-      btnUrls.push('or');
+      tempUrls.push('or');
     } else if (temp === '+') {
-      btnUrls.push('plus');
+      tempUrls.push('plus');
     } else if (temp === '_') {
-      btnUrls.push('a');
+      tempUrls.push('a');
     } else if (temp === 'p' || temp === 'k' || !isNaN(parseFloat(temp))) {
-      btnUrls.push(move.classic[i]);
-    } else {
-      console.log('classic last', temp);
+      tempUrls.push(tempMove[i]);
     }
   }
-  return btnUrls;
+  return tempUrls;
 }
