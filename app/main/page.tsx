@@ -16,7 +16,7 @@ export default function Main () {
                     height={144}
                     width={144}
                     alt="Character-Image"
-                    className="w-auto mb-4 roundedg shadow-md"
+                    className="w-auto mb-4 rounded shadow-md"
                   />
                 </Link>
               </li>
