@@ -11,16 +11,16 @@ export default function Elem(params: any) {
   } else if (controlGen === 'modern') {
     btnUrls = getModernUrl(move);
   }
-  
-  return (                             
-    <div className="flex w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+
+  return (
+    <div className="flex md:w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
       <div
         style={{ backgroundImage: `url("/moves/101.jpg")` }}
-        className="h-10 w-16 bg-cover bg-center rounded shadow-md">        
+        className="h-10 w-16 bg-cover bg-center rounded shadow-md">
       </div>
         <div className="w-70 px-5">
           <p>{move.name}</p>
-            <div className="flex flex-row py-1">        
+            <div className="flex flex-row py-1">
               {btnUrls &&
                 btnUrls.map((bUrl, index) => (
                 <span
@@ -28,13 +28,13 @@ export default function Elem(params: any) {
                 className="h-6 w-6 z-10 p-0 mr-1 bg-cover flex"
                 style={{ backgroundImage: `url('/movebtn/${controlMake}/icon_${bUrl}.png')` }}>
                 </span>
-              ))}  
+              ))}
             </div>
           </div>
-        </div>            
+        </div>
       )
 }
-  
+
 function getModernUrl(move: Move) {
   let btnUrls: string[] = [];
   if (move.modern === 'NO INPUT' || move.modern === 'default' || !move.modern) {
@@ -65,7 +65,7 @@ function getModernUrl(move: Move) {
       i++;
     } else  if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || Number.isInteger(temp)) {
       btnUrls.push(temp);
-    } 
+    }
   }
   return btnUrls;
 }

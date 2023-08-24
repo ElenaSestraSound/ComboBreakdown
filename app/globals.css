@@ -87,21 +87,25 @@ header nav .active:hover {
 .character-page .overlay {
   background: rgba(var(--background-rgb), 0.5);
 }
+
 .platform-select button {
   padding: 0.5rem 2.5rem;
   border: 1px solid transparent;
 }
+
 .platform-select .active {
   border: 1px solid rgb(var(--highlight-rgb));
 }
 
 .control-select button {
-  padding: 1rem 2.75rem;
+  padding: 1rem 3.5rem;
   border: 1px solid transparent;
 }
+
 .control-select .active {
   border: 1px solid rgb(var(--highlight-rgb));
 }
+
 summary {
   display: flex;
   transition: all 50ms ease-in;
