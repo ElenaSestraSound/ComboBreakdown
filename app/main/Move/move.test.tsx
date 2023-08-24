@@ -38,7 +38,7 @@ describe('MoveElem', () => {
 
   it('switches between control types on click', () => {
     render(<MoveElem char={mockData} />);
-    const modernButton = screen.getByRole('img', { name: /i2/i });
+    const modernButton = screen.getByTitle(/i2/i);
     fireEvent.click(modernButton);
     expect(modernButton).toBeInTheDocument();
   });

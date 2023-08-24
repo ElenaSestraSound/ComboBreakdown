@@ -13,6 +13,7 @@ export default function Elem (params: any) {
   }
 
   return (
+                 
     <div className="flex lg:w-96 justify-center items-center pt-2 pb-2 px-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
       <div className="px-3 text-center">
         <p>{move.name}</p>
@@ -27,7 +28,7 @@ export default function Elem (params: any) {
             ))}
         </div>
       </div>
-    </div>
+    </div>      
   );
 }
 
