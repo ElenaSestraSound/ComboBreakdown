@@ -39,7 +39,6 @@ function getModernUrl (move: Move) {
   for (let i = 0; i < move.modern.length; i++) {
     let temp = move.modern[i];
     let tempMove = move.modern;
-    console.log('gogogo', tempMove);
     temp = temp.toLowerCase();
     tempMove = tempMove.toLowerCase();
     if (temp === '+') {
@@ -61,9 +60,7 @@ function getModernUrl (move: Move) {
       i++;
     } else if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || !isNaN(parseFloat(temp))) {
       btnUrls.push(temp);
-    } else {
-      console.log('end of line', temp);
-    }
+    } 
   }
   return btnUrls;
 }
