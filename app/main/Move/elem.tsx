@@ -14,18 +14,18 @@ export default function Elem(params: any) {
 
   return (
     <div className="flex md:w-96 items-center p-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
-      <div
+      {/* <div
         style={{ backgroundImage: `url("/moves/101.jpg")` }}
         className="h-10 w-16 bg-cover bg-center rounded shadow-md">
-      </div>
-        <div className="w-70 px-5">
+      </div> */}
+              <div className="w-70 px-5">
           <p>{move.name}</p>
             <div className="flex flex-row py-1">
               {btnUrls &&
                 btnUrls.map((bUrl, index) => (
                 <span
                 key={index}
-                className="h-6 w-6 z-10 p-0 mr-1 bg-cover flex"
+                className="h-6 w-6 z-10 p-0 mr-2 bg-cover flex"
                 style={{ backgroundImage: `url('/movebtn/${controlMake}/icon_${bUrl}.png')` }}>
                 </span>
               ))}
