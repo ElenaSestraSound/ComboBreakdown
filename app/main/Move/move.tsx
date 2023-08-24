@@ -20,14 +20,14 @@ export default function MoveElem (params: any) {
           <span
             title="i1"
             className="h-4 w-48 z-10 p-0 mr-2 bg-cover bg-center"
-            style={{ backgroundImage: `url('/movebtn/logoclassic.png')` }}>
+            style={{ backgroundImage: `url('/movebtn/logo/logoclassic.png')` }}>
           </span>
         </button>
         <button title="Modern" className={controlGen === 'modern' ? 'active' : ''} type="button" onClick={() => setControlGen('modern')}>
           <span
             title="i2"
             className="h-4 w-48 z-10 p-0 mr-2 bg-cover bg-center"
-            style={{ backgroundImage: `url('/movebtn/logomodern.png')` }}>
+            style={{ backgroundImage: `url('/movebtn/logo/logomodern.png')` }}>
           </span>
         </button>
       </div>
