@@ -57,15 +57,18 @@ function getModernUrl(move: Move) {
     } else if (tempMove.slice(i, i + 4) === 'auto') {
       btnUrls.push('auto');
       i += 4;
-    } else if (tempMove.slice(i, i + 2) === 'lc') {
-      btnUrls.push('lc');
-      i++;
-    } else if (temp === 'd' || temp === 's' || temp === 'r') {
+    // } else if (tempMove.slice(i, i + 2) === 'lc') {
+    //   btnUrls.push('lc');
+    //   i++;
+    } else if (temp === 'd' || temp === 's' || temp === 'r' || temp === 'l') {
       btnUrls.push(tempMove[i] + tempMove[i + 1]);
       i++;
     } else  if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || Number.isInteger(temp)) {
       btnUrls.push(temp);
-    } 
+      console.log('almost end of line', temp);
+    } else {
+      console.log('end of line', temp);
+    }
   }
   return btnUrls;
 }
