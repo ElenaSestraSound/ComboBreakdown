@@ -3,25 +3,200 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --background-rgb: 20, 10, 30;
+  --main-rgb: 150, 55, 180;
+  --highlight-rgb: 180, 80, 220;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html,
+body {
+  height: 100%;
+}
+
+html * {
+  box-sizing: border-box;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-rgb));
+  overflow-x: hidden;
+}
+
+canvas {
+  z-index: 10;
+}
+
+header {
+  background-color: rgba(var(--main-rgb), 0.15);
+}
+
+header h1 span {
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav {
+  color: #dfdfdf;
+  margin-bottom: -0.17rem;
+}
+
+header nav span {
+  display: block;
+  margin: 0 0.25rem;
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav a {
+  transition: all 50ms ease-in;
+}
+
+header nav a:hover {
+  color: rgb(var(--highlight-rgb));
+  transition: all 50ms ease-in;
+}
+
+header nav .active,
+header nav .active:hover {
+  color: rgb(var(--highlight-rgb));
+}
+
+header nav .active:hover {
+  cursor: default;
+}
+
+.main-page li {
+  margin-right: -4.5rem;
+}
+
+.main-page li img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .065s ease-in;
+  transition: .065s ease-in;
+}
+
+.main-page li img:hover {
+  -webkit-transform: scale(1.075);
+  transform: scale(1.075);
+  filter: drop-shadow(0 2px 5px rgb(230, 148, 221));
+}
+
+.character-page .overlay {
+  background: rgba(var(--background-rgb), 0.5);
+}
+
+.platform-select button {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 2.5rem;
+  border: 1px solid transparent;
+  width: 33%;
+}
+
+.platform-select .active {
+  border: 1px solid rgb(var(--highlight-rgb));
+}
+
+.control-select button {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 3.5rem;
+  border: 1px solid transparent;
+  width: 50%;
+}
+
+.control-select .active {
+  border: 1px solid rgb(var(--highlight-rgb));
+}
+
+summary {
+  display: flex;
+  transition: all 50ms ease-in;
+}
+
+summary:hover {
+  transition: all 50ms ease-in;
+}
+
+.glossary-page .overlay {
+  background: rgba(var(--background-rgb), 0.75);
+}
+
+.glossary-page form {
+  color: black;
+}
+
+.glossary-page label {
+  color: rgba(var(--highlight-rgb), 1)
+}
+
+.glossary-page input {
+  border: 0;
+}
+
+.filter-letters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filter-letters li {
+  display: flex;
+}
+
+.filter-letters a {
+  display: flex;
+  text-transform: uppercase;
+  padding: 0 8px 2px;
+  border-radius: 5px;
+}
+
+.filter-letters a:hover {
+  background-color: rgba(var(--main-rgb), 1);
+}
+
+.filter-letters .active,
+.filter-letters .active:hover {
+  background-color: rgba(var(--highlight-rgb), 1);
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details p {
+  transition: all .25s ease-in;
+}
+
+details[open] p {
+  animation-name: animateDown;
+  animation-duration: 0.3s, 2s;
+}
+
+@keyframes animateDown {
+  0% {
+    opacity: 0;
+    transform: translatey(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+
+.recharts-responsive-container {
+  border-top: 2px solid black;
+}
+
+.recharts-layer .recharts-label-list {
+  transform: translateY(2px) translateX(4px);
+}
+
+.recharts-reference-line .recharts-label {
+  transform: translateY(5px) translateX(4px);
 }
