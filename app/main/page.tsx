@@ -3,7 +3,6 @@ import { getCharacters } from '@/utils/get-characters';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
 export default function Main () {
   const characters = use(getCharacters());
   return (
