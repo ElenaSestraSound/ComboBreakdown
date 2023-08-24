@@ -6,7 +6,8 @@ export default function MoveElem (params: any) {
   const { char } = params;
   const [controlGen, setControlGen] = useState('classic');
   const [controlMake, setControlMake] = useState('cap');
-  const movesObj = char[0].moves;
+  let movesObj = char[0].moves;
+
   return (
     <>
       <div className="platform-select flex lg:w-96 items-center justify-around bg-gradient-to-r from-purple-950 to-indigo-900 rounded shadow-inner">
