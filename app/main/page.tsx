@@ -1,6 +1,5 @@
 import { use } from 'react';
 import { getCharacters } from '@/utils/get-characters';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Main () {
@@ -13,11 +12,11 @@ export default function Main () {
             {characters.map((character) => (
               <li key={character.name} >
                 <Link href={{ pathname: `/[${character.name}].tsx`, query: { charName: character.name } }}>
-                  <Image src={`/character/${character.name}.png`}
+                  <img src={`/character/${character.name}.png`}
                     height={144}
                     width={144}
                     alt="Character-Image"
-                    className="w-auto mb-4 rounded shadow-md"
+                    className="w-auto mb-4 roundedg shadow-md"
                   />
                 </Link>
               </li>
