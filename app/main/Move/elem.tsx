@@ -13,15 +13,15 @@ export default function Elem (params: any) {
   }
 
   return (
-    <div className="flex lg:w-96 items-center pt-2 pb-2 px-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
-      <div className="px-3">
+    <div className="flex lg:w-96 justify-center items-center pt-2 pb-2 px-3 bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
+      <div className="px-3 text-center">
         <p>{move.name}</p>
-        <div className="flex flex-row py-1">
+        <div className="flex flex-row py-1 justify-center items-center">
           {btnUrls &&
             btnUrls.map((bUrl, index) => (
               <span
                 key={index}
-                className="h-6 w-6 z-10 p-0 mr-2 bg-cover bg-center flex"
+                className="flex  h-6 w-6 z-10 p-0 mr-2 bg-cover bg-center"
                 style={{ backgroundImage: `url('/movebtn/${controlMake}/icon_${bUrl}.png')` }}>
               </span>
             ))}
@@ -39,7 +39,6 @@ function getModernUrl (move: Move) {
   for (let i = 0; i < move.modern.length; i++) {
     let temp = move.modern[i];
     let tempMove = move.modern;
-    // console.log('gogogo', temp, tempMove);
     temp = temp.toLowerCase();
     tempMove = tempMove.toLowerCase();
     if (temp === '+') {
@@ -59,9 +58,9 @@ function getModernUrl (move: Move) {
     } else if (temp === 'd' || temp === 's' || temp === 'r') {
       btnUrls.push(tempMove[i] + tempMove[i + 1]);
       i++;
-    } else if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || Number.isInteger(temp)) {
+    } else if (temp === 'l' || temp === 'm' || temp === 'h' || temp === 'c' || !isNaN(parseFloat(temp))) {
       btnUrls.push(temp);
-    }
+    } 
   }
   return btnUrls;
 }
@@ -83,10 +82,10 @@ function getClassicUrl (move: Move) {
       btnUrls.push('plus');
     } else if (temp === '_') {
       btnUrls.push('a');
-    } else if (temp === 'p' || temp === 'k' || Number.isInteger(temp)) {
+    } else if (temp === 'p' || temp === 'k' || !isNaN(parseFloat(temp))) {
       btnUrls.push(move.classic[i]);
     } else {
-      // console.log(temp);
+      console.log('classic last', temp);
     }
   }
   return btnUrls;
