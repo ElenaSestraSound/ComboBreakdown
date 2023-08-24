@@ -2,6 +2,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Elem from './elem';
+ 
+export function ClassicBtn() {
+  return <Image width={ 240} height={ 60 } title="i1" className="h-5" src='/movebtn/logo-classic.png' alt="Classic" />
+}
+
+export function ModernBtn() {
+  return <Image width={ 240 } height={ 60 } title="i2" className="h-5" src="/movebtn/logo-modern.png" alt="Modern"/>
+}
 
 export default function MoveElem (params: any) {
   const { char } = params;
@@ -17,8 +25,8 @@ export default function MoveElem (params: any) {
         <button className={controlMake === 'cap' ? 'active' : ''} type="button" onClick={() => setControlMake('cap')}>Capcom</button>
       </div>
       <div className="control-select flex lg:w-96 items-center justify-around bg-gradient-to-r from-purple-950 to-indigo-900 my-5 rounded shadow-inner">
-        <button title="Classic" className={controlGen === 'classic' ? 'active' : ''} type="button" onClick={() => setControlGen('classic')}><Image width={ 240} height={ 60 } title="i1" className="h-5" src='/movebtn/logo-classic.png' alt="Classic" /></button>
-        <button title="Modern" className={controlGen === 'modern' ? 'active' : ''} type="button" onClick={() => setControlGen('modern')}><Image width={ 240 } height={ 60 } title="i2" className="h-5" src="/movebtn/logo-modern.png" alt="Modern"/></button>
+        <button title="Classic" className={controlGen === 'classic' ? 'active' : ''} type="button" onClick={() => setControlGen('classic')}><ClassicBtn /></button>
+        <button title="Modern" className={controlGen === 'modern' ? 'active' : ''} type="button" onClick={() => setControlGen('modern')}><ModernBtn /></button>
       </div>
       <div>
         <ul>
