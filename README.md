@@ -21,3 +21,9 @@ Street fighter 6 companion app
 - Run npm i
 - Npm run dev
 
+
+### Tech Stack
+
+- [Next.js](https://github.com/vercel/next.js) - [React](https://github.com/facebook/react) - [TypeScript](https://github.com/microsoft/TypeScript)
+- [Tailwind](https://github.com/tailwindlabs/tailwindcss) - [Headless UI](https://github.com/tailwindlabs/headlessui) - [Recharts](https://github.com/recharts/recharts)
+- [MongoDB](https://github.com/mongodb/mongo) - [Prisma](https://github.com/prisma/prisma)
