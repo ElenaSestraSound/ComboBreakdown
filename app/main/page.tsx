@@ -9,7 +9,7 @@ export default function Main () {
     <div className='max-w-4xl mx-auto pl-10 pr-40 py-20 md:pr-20 md:pl-0 main-page'>
       <div className='h-full grid mb-8 md:flex'>
         {characters && (
-          <ul className="flex flex-wrap justify-center self-start">
+          <ul className="flex flex-wrap justify-center self-start" aria-label="character-list">
             {characters.map((character) => (
               <li key={character.name} >
                 <Link href={{ pathname: `/[${character.name}].tsx`, query: { charName: character.name } }}>
