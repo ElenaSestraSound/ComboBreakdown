@@ -27,3 +27,10 @@ Street fighter 6 companion app
 - [Next.js](https://github.com/vercel/next.js) - [React](https://github.com/facebook/react) - [TypeScript](https://github.com/microsoft/TypeScript)
 - [Tailwind](https://github.com/tailwindlabs/tailwindcss) - [Headless UI](https://github.com/tailwindlabs/headlessui) - [Recharts](https://github.com/recharts/recharts)
 - [MongoDB](https://github.com/mongodb/mongo) - [Prisma](https://github.com/prisma/prisma)
+
+### Developers
+
+- Elena Banon - [GitHub](https://github.com/ElenaSestraSound/) - [LinkedIn](https://www.linkedin.com/in/elenabanon/)
+- Chris Sorensen - [GitHub](https://github.com/CPHris) - [LinkedIn](https://www.linkedin.com/in/chris-sorensen-cph/)
+- Konrad Josef Singer - [GitHub](https://github.com/konradjosefsinger/) - [LinkedIn](https://www.linkedin.com/in/konradjosefsinger/)
+- Arto Lahtinen - [GitHub](https://github.com/aatoaa) - [LinkedIn](https://www.linkedin.com/in/arto-l/)
