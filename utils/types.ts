@@ -43,8 +43,7 @@ export interface ICharacterList {
 };
 
 export interface ICharacterPage  {
-  searchParams: { [key: string]: string | string[] | undefined; };
-  params: { [key: string]: Move | undefined; };
+  searchParams: { [key: string]: string | undefined; };
 };
 export type GlossaryItem = {
   term: string,

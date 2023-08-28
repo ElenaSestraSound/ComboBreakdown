@@ -7,7 +7,7 @@ export default function MoveElem (params: any) {
   const { char } = params;
   const [controlGen, setControlGen] = useState('classic');
   const [controlMake, setControlMake] = useState('cap');
-  let movesObj = char[0].moves;
+  let movesObj = char.moves;
 
   return (
     <>
